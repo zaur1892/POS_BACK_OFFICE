@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace POS_BACK_OFFICE
+{
+    public partial class frmAddService : Form
+    {
+        public frmAddService()
+        {
+            InitializeComponent();
+        }
+        private mssqlBaglanti sqlbaglan = new mssqlBaglanti();
+    }
+}

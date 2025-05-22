@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POS_BACK_OFFICE", "KlinikaProject\POS_BACK_OFFICE.csproj", "{B58C574B-7C20-462D-86AC-4ED29D47AF2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B58C574B-7C20-462D-86AC-4ED29D47AF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58C574B-7C20-462D-86AC-4ED29D47AF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58C574B-7C20-462D-86AC-4ED29D47AF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58C574B-7C20-462D-86AC-4ED29D47AF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB7C8A26-A72E-4460-9B25-E262A15818A3}
+	EndGlobalSection
+EndGlobal
