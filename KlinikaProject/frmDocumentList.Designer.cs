@@ -371,7 +371,7 @@
             adDgrvDocumentDetail.Name = "adDgrvDocumentDetail";
             adDgrvDocumentDetail.ReadOnly = true;
             adDgrvDocumentDetail.RightToLeft = RightToLeft.No;
-            adDgrvDocumentDetail.Size = new Size(1060, 364);
+            adDgrvDocumentDetail.Size = new Size(947, 364);
             adDgrvDocumentDetail.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             adDgrvDocumentDetail.TabIndex = 95;
             // 
@@ -729,12 +729,12 @@
             adDgrvDocumentDetailStockSum.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, BOX_COUNT, TOTAL, STOCKID });
             adDgrvDocumentDetailStockSum.FilterAndSortEnabled = false;
             adDgrvDocumentDetailStockSum.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
-            adDgrvDocumentDetailStockSum.Location = new Point(1122, 411);
+            adDgrvDocumentDetailStockSum.Location = new Point(998, 411);
             adDgrvDocumentDetailStockSum.MaxFilterButtonImageHeight = 23;
             adDgrvDocumentDetailStockSum.Name = "adDgrvDocumentDetailStockSum";
             adDgrvDocumentDetailStockSum.ReadOnly = true;
             adDgrvDocumentDetailStockSum.RightToLeft = RightToLeft.No;
-            adDgrvDocumentDetailStockSum.Size = new Size(401, 364);
+            adDgrvDocumentDetailStockSum.Size = new Size(525, 364);
             adDgrvDocumentDetailStockSum.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             adDgrvDocumentDetailStockSum.TabIndex = 110;
             // 
@@ -767,7 +767,7 @@
             dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
             TOTAL.DefaultCellStyle = dataGridViewCellStyle18;
             TOTAL.FillWeight = 60F;
-            TOTAL.HeaderText = "Çəki";
+            TOTAL.HeaderText = "Toplam Çəki";
             TOTAL.MinimumWidth = 24;
             TOTAL.Name = "TOTAL";
             TOTAL.ReadOnly = true;
@@ -845,10 +845,6 @@
         private Panel panel3;
         private Label lblModulName;
         private Zuby.ADGV.AdvancedDataGridView adDgrvDocumentDetailStockSum;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn BOX_COUNT;
-        private DataGridViewTextBoxColumn TOTAL;
-        private DataGridViewTextBoxColumn STOCKID;
         private DataGridViewTextBoxColumn DOCNO;
         private DataGridViewTextBoxColumn INSERT_DATETIME;
         private DataGridViewTextBoxColumn DOC_DATE;
@@ -881,5 +877,9 @@
         private DataGridViewTextBoxColumn PURCHASE_UNIT;
         private DataGridViewTextBoxColumn BASE_UNIT;
         private DataGridViewTextBoxColumn DETAIL_ID;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn BOX_COUNT;
+        private DataGridViewTextBoxColumn TOTAL;
+        private DataGridViewTextBoxColumn STOCKID;
     }
 }

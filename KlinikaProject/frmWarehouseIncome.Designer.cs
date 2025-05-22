@@ -198,7 +198,6 @@
             // 
             // btnOpenProductForm
             // 
-            btnOpenProductForm.Enabled = false;
             btnOpenProductForm.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
             btnOpenProductForm.Location = new Point(594, 39);
             btnOpenProductForm.Name = "btnOpenProductForm";

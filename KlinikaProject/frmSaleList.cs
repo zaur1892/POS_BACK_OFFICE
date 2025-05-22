@@ -184,10 +184,10 @@ namespace POS_BACK_OFFICE
 
                     // Stok cəmlərini göstərmək üçün
                     using (SqlCommand cmdStock = new SqlCommand(@"
-                SELECT STOCK_ID, STOCK_NAME, COUNT(STOCK_ID) AS BOX_COUNT, SUM(TOTAL_QUANTITY) AS TOTAL
+                SELECT STOCK_ID, STOCK_NAME, COUNT(STOCK_ID) AS BOX_COUNT, SUM(TOTAL_QUANTITY) AS TOTAL,DEFAULT_PRICE PRICE,SUM(TOTAL_AMOUNT) TOTAL_SUM
                 FROM VW_DOCUMENT_DETAIL
                 WHERE DOC_NO = @DOC_NO
-                GROUP BY STOCK_ID, STOCK_NAME", connection))
+                GROUP BY STOCK_ID, STOCK_NAME,DEFAULT_PRICE", connection))
                     {
                         cmdStock.Parameters.AddWithValue("@DOC_NO", doc_no);
 

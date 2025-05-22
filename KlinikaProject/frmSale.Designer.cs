@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSale));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -39,7 +38,13 @@
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSale));
             dgrvDocumentSumStock = new DataGridView();
+            Stock_Name = new DataGridViewTextBoxColumn();
+            Box_Count = new DataGridViewTextBoxColumn();
+            Total_Quantity = new DataGridViewTextBoxColumn();
+            onePrice = new DataGridViewTextBoxColumn();
+            totalSum = new DataGridViewTextBoxColumn();
             txtCompanyName = new TextBox();
             lblCompanyName = new Label();
             lblLastPurchase = new Label();
@@ -60,6 +65,20 @@
             BtnCancel = new Button();
             AccountID = new TextBox();
             dgrvDocument = new DataGridView();
+            Date = new DataGridViewTextBoxColumn();
+            StockId = new DataGridViewTextBoxColumn();
+            Barcode = new DataGridViewTextBoxColumn();
+            StockName = new DataGridViewTextBoxColumn();
+            Quantity = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            TotalQuantity = new DataGridViewTextBoxColumn();
+            TotalAmount = new DataGridViewTextBoxColumn();
+            BaseUnitId = new DataGridViewTextBoxColumn();
+            DefaultUnit = new DataGridViewTextBoxColumn();
+            PurchaseUnitId = new DataGridViewTextBoxColumn();
+            PurchaseUnit = new DataGridViewComboBoxColumn();
+            Discount = new DataGridViewTextBoxColumn();
+            DiscountPerCent = new DataGridViewTextBoxColumn();
             dtpLastPurchaseDate = new DateTimePicker();
             txtSifarisNomresi = new TextBox();
             label2 = new Label();
@@ -79,25 +98,6 @@
             txtBarcode = new TextBox();
             lblBarcode = new Label();
             chkDupCustomer = new CheckBox();
-            Stock_Name = new DataGridViewTextBoxColumn();
-            Box_Count = new DataGridViewTextBoxColumn();
-            Total_Quantity = new DataGridViewTextBoxColumn();
-            onePrice = new DataGridViewTextBoxColumn();
-            totalSum = new DataGridViewTextBoxColumn();
-            Date = new DataGridViewTextBoxColumn();
-            StockId = new DataGridViewTextBoxColumn();
-            Barcode = new DataGridViewTextBoxColumn();
-            StockName = new DataGridViewTextBoxColumn();
-            Quantity = new DataGridViewTextBoxColumn();
-            Price = new DataGridViewTextBoxColumn();
-            TotalQuantity = new DataGridViewTextBoxColumn();
-            TotalAmount = new DataGridViewTextBoxColumn();
-            BaseUnitId = new DataGridViewTextBoxColumn();
-            DefaultUnit = new DataGridViewTextBoxColumn();
-            PurchaseUnitId = new DataGridViewTextBoxColumn();
-            PurchaseUnit = new DataGridViewComboBoxColumn();
-            Discount = new DataGridViewTextBoxColumn();
-            DiscountPerCent = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgrvDocumentSumStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgrvDocument).BeginInit();
@@ -119,6 +119,54 @@
             dgrvDocumentSumStock.Size = new Size(524, 284);
             dgrvDocumentSumStock.TabIndex = 108;
             dgrvDocumentSumStock.CellValueChanged += dgrvDocumentSumStock_CellValueChanged;
+            // 
+            // Stock_Name
+            // 
+            Stock_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Stock_Name.DefaultCellStyle = dataGridViewCellStyle1;
+            Stock_Name.FillWeight = 150F;
+            Stock_Name.Frozen = true;
+            Stock_Name.HeaderText = "Çeşid Adı";
+            Stock_Name.Name = "Stock_Name";
+            Stock_Name.ReadOnly = true;
+            Stock_Name.Width = 150;
+            // 
+            // Box_Count
+            // 
+            Box_Count.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Box_Count.FillWeight = 60F;
+            Box_Count.HeaderText = "Qutu Sayı";
+            Box_Count.Name = "Box_Count";
+            Box_Count.Width = 85;
+            // 
+            // Total_Quantity
+            // 
+            Total_Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Total_Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            Total_Quantity.FillWeight = 60F;
+            Total_Quantity.HeaderText = "Çəki KG";
+            Total_Quantity.Name = "Total_Quantity";
+            Total_Quantity.Width = 80;
+            // 
+            // onePrice
+            // 
+            onePrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            onePrice.FillWeight = 60F;
+            onePrice.HeaderText = "Qiymət";
+            onePrice.Name = "onePrice";
+            onePrice.Width = 80;
+            // 
+            // totalSum
+            // 
+            totalSum.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            totalSum.FillWeight = 60F;
+            totalSum.HeaderText = "Cəm AZN";
+            totalSum.Name = "totalSum";
+            totalSum.Width = 85;
             // 
             // txtCompanyName
             // 
@@ -325,252 +373,6 @@
             dgrvDocument.TabIndex = 55;
             dgrvDocument.CellValueChanged += dgrvDocument_CellValueChanged;
             // 
-            // dtpLastPurchaseDate
-            // 
-            dtpLastPurchaseDate.Format = DateTimePickerFormat.Short;
-            dtpLastPurchaseDate.Location = new Point(665, 42);
-            dtpLastPurchaseDate.Name = "dtpLastPurchaseDate";
-            dtpLastPurchaseDate.Size = new Size(75, 23);
-            dtpLastPurchaseDate.TabIndex = 66;
-            dtpLastPurchaseDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
-            dtpLastPurchaseDate.Visible = false;
-            // 
-            // txtSifarisNomresi
-            // 
-            txtSifarisNomresi.Location = new Point(20, 301);
-            txtSifarisNomresi.Name = "txtSifarisNomresi";
-            txtSifarisNomresi.ReadOnly = true;
-            txtSifarisNomresi.Size = new Size(108, 23);
-            txtSifarisNomresi.TabIndex = 67;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label2.Location = new Point(134, 305);
-            label2.Name = "label2";
-            label2.Size = new Size(83, 19);
-            label2.TabIndex = 68;
-            label2.Text = "SİFARİŞ  №";
-            // 
-            // lblUserId
-            // 
-            lblUserId.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblUserId.AutoSize = true;
-            lblUserId.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblUserId.ForeColor = SystemColors.ActiveCaptionText;
-            lblUserId.Location = new Point(12, 699);
-            lblUserId.Name = "lblUserId";
-            lblUserId.Size = new Size(63, 21);
-            lblUserId.TabIndex = 72;
-            lblUserId.Text = "UserId:";
-            // 
-            // lblUserName
-            // 
-            lblUserName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblUserName.AutoSize = true;
-            lblUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblUserName.ForeColor = SystemColors.ActiveCaptionText;
-            lblUserName.Location = new Point(120, 699);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(91, 21);
-            lblUserName.TabIndex = 73;
-            lblUserName.Text = "Username:";
-            // 
-            // txtDocTypeId
-            // 
-            txtDocTypeId.Enabled = false;
-            txtDocTypeId.Location = new Point(384, 13);
-            txtDocTypeId.Name = "txtDocTypeId";
-            txtDocTypeId.Size = new Size(23, 23);
-            txtDocTypeId.TabIndex = 74;
-            txtDocTypeId.Visible = false;
-            // 
-            // lblSearchStock
-            // 
-            lblSearchStock.AutoSize = true;
-            lblSearchStock.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblSearchStock.Location = new Point(20, 232);
-            lblSearchStock.Name = "lblSearchStock";
-            lblSearchStock.Size = new Size(94, 17);
-            lblSearchStock.TabIndex = 82;
-            lblSearchStock.Text = "ÇEŞİD AXTAR:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label3.Location = new Point(591, 90);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 19);
-            label3.TabIndex = 86;
-            label3.Text = "Anbar";
-            label3.Visible = false;
-            // 
-            // cmbWarehouse
-            // 
-            cmbWarehouse.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            cmbWarehouse.FormattingEnabled = true;
-            cmbWarehouse.Location = new Point(651, 83);
-            cmbWarehouse.Name = "cmbWarehouse";
-            cmbWarehouse.Size = new Size(75, 23);
-            cmbWarehouse.TabIndex = 87;
-            cmbWarehouse.Visible = false;
-            cmbWarehouse.SelectedIndexChanged += cmbWarehouse_SelectedIndexChanged;
-            // 
-            // txtWarehouseId
-            // 
-            txtWarehouseId.Enabled = false;
-            txtWarehouseId.Location = new Point(703, 112);
-            txtWarehouseId.Name = "txtWarehouseId";
-            txtWarehouseId.Size = new Size(23, 23);
-            txtWarehouseId.TabIndex = 88;
-            txtWarehouseId.Visible = false;
-            // 
-            // dtpDocDate
-            // 
-            dtpDocDate.Enabled = false;
-            dtpDocDate.Format = DateTimePickerFormat.Short;
-            dtpDocDate.Location = new Point(21, 170);
-            dtpDocDate.Name = "dtpDocDate";
-            dtpDocDate.Size = new Size(108, 23);
-            dtpDocDate.TabIndex = 89;
-            dtpDocDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
-            // 
-            // lblDiscount
-            // 
-            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblDiscount.AutoSize = true;
-            lblDiscount.Location = new Point(157, 40);
-            lblDiscount.Name = "lblDiscount";
-            lblDiscount.Size = new Size(54, 15);
-            lblDiscount.TabIndex = 100;
-            lblDiscount.Text = "Discount";
-            // 
-            // lblTotalAmount
-            // 
-            lblTotalAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblTotalAmount.AutoSize = true;
-            lblTotalAmount.Location = new Point(157, 57);
-            lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(80, 15);
-            lblTotalAmount.TabIndex = 101;
-            lblTotalAmount.Text = "Total Amount";
-            // 
-            // lblSubtotal
-            // 
-            lblSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblSubtotal.AutoSize = true;
-            lblSubtotal.Location = new Point(157, 23);
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(51, 15);
-            lblSubtotal.TabIndex = 99;
-            lblSubtotal.Text = "Subtotal";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(54, 7);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(86, 64);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 106;
-            pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(lblSubtotal);
-            panel1.Controls.Add(lblTotalAmount);
-            panel1.Controls.Add(lblDiscount);
-            panel1.Location = new Point(930, 621);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(346, 78);
-            panel1.TabIndex = 105;
-            // 
-            // txtBarcode
-            // 
-            txtBarcode.Location = new Point(98, 262);
-            txtBarcode.Name = "txtBarcode";
-            txtBarcode.Size = new Size(294, 23);
-            txtBarcode.TabIndex = 106;
-            txtBarcode.KeyDown += txtBarcode_KeyDown;
-            // 
-            // lblBarcode
-            // 
-            lblBarcode.AutoSize = true;
-            lblBarcode.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblBarcode.Location = new Point(20, 264);
-            lblBarcode.Name = "lblBarcode";
-            lblBarcode.Size = new Size(65, 17);
-            lblBarcode.TabIndex = 107;
-            lblBarcode.Text = "BARKOD:";
-            // 
-            // chkDupCustomer
-            // 
-            chkDupCustomer.AutoSize = true;
-            chkDupCustomer.BackColor = Color.LimeGreen;
-            chkDupCustomer.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            chkDupCustomer.ForeColor = Color.Transparent;
-            chkDupCustomer.Location = new Point(1103, 13);
-            chkDupCustomer.Name = "chkDupCustomer";
-            chkDupCustomer.Size = new Size(173, 21);
-            chkDupCustomer.TabIndex = 69;
-            chkDupCustomer.Text = "MÜŞTƏRİ BAZASINDAN";
-            chkDupCustomer.UseVisualStyleBackColor = false;
-            chkDupCustomer.CheckedChanged += chkDupCustomer_CheckedChanged;
-            // 
-            // Stock_Name
-            // 
-            Stock_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            Stock_Name.DefaultCellStyle = dataGridViewCellStyle1;
-            Stock_Name.FillWeight = 150F;
-            Stock_Name.Frozen = true;
-            Stock_Name.HeaderText = "Çeşid Adı";
-            Stock_Name.Name = "Stock_Name";
-            Stock_Name.ReadOnly = true;
-            Stock_Name.Width = 150;
-            // 
-            // Box_Count
-            // 
-            Box_Count.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Box_Count.FillWeight = 60F;
-            Box_Count.HeaderText = "Qutu Sayı";
-            Box_Count.Name = "Box_Count";
-            Box_Count.Width = 85;
-            // 
-            // Total_Quantity
-            // 
-            Total_Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            Total_Quantity.DefaultCellStyle = dataGridViewCellStyle2;
-            Total_Quantity.FillWeight = 60F;
-            Total_Quantity.HeaderText = "Çəki KG";
-            Total_Quantity.Name = "Total_Quantity";
-            Total_Quantity.Width = 80;
-            // 
-            // onePrice
-            // 
-            onePrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            onePrice.FillWeight = 60F;
-            onePrice.HeaderText = "Qiymət";
-            onePrice.Name = "onePrice";
-            onePrice.Width = 80;
-            // 
-            // totalSum
-            // 
-            totalSum.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            totalSum.FillWeight = 60F;
-            totalSum.HeaderText = "Cəm AZN";
-            totalSum.Name = "totalSum";
-            totalSum.Width = 85;
-            // 
             // Date
             // 
             Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -697,7 +499,6 @@
             Discount.Name = "Discount";
             Discount.ReadOnly = true;
             Discount.Visible = false;
-            Discount.Width = 73;
             // 
             // DiscountPerCent
             // 
@@ -709,6 +510,204 @@
             DiscountPerCent.Name = "DiscountPerCent";
             DiscountPerCent.ReadOnly = true;
             DiscountPerCent.Visible = false;
+            // 
+            // dtpLastPurchaseDate
+            // 
+            dtpLastPurchaseDate.Format = DateTimePickerFormat.Short;
+            dtpLastPurchaseDate.Location = new Point(665, 42);
+            dtpLastPurchaseDate.Name = "dtpLastPurchaseDate";
+            dtpLastPurchaseDate.Size = new Size(75, 23);
+            dtpLastPurchaseDate.TabIndex = 66;
+            dtpLastPurchaseDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
+            dtpLastPurchaseDate.Visible = false;
+            // 
+            // txtSifarisNomresi
+            // 
+            txtSifarisNomresi.Location = new Point(20, 301);
+            txtSifarisNomresi.Name = "txtSifarisNomresi";
+            txtSifarisNomresi.ReadOnly = true;
+            txtSifarisNomresi.Size = new Size(108, 23);
+            txtSifarisNomresi.TabIndex = 67;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label2.Location = new Point(134, 305);
+            label2.Name = "label2";
+            label2.Size = new Size(83, 19);
+            label2.TabIndex = 68;
+            label2.Text = "SİFARİŞ  №";
+            // 
+            // lblUserId
+            // 
+            lblUserId.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblUserId.AutoSize = true;
+            lblUserId.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblUserId.ForeColor = SystemColors.ActiveCaptionText;
+            lblUserId.Location = new Point(12, 699);
+            lblUserId.Name = "lblUserId";
+            lblUserId.Size = new Size(63, 21);
+            lblUserId.TabIndex = 72;
+            lblUserId.Text = "UserId:";
+            // 
+            // lblUserName
+            // 
+            lblUserName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblUserName.ForeColor = SystemColors.ActiveCaptionText;
+            lblUserName.Location = new Point(120, 699);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(91, 21);
+            lblUserName.TabIndex = 73;
+            lblUserName.Text = "Username:";
+            // 
+            // txtDocTypeId
+            // 
+            txtDocTypeId.Enabled = false;
+            txtDocTypeId.Location = new Point(384, 13);
+            txtDocTypeId.Name = "txtDocTypeId";
+            txtDocTypeId.Size = new Size(23, 23);
+            txtDocTypeId.TabIndex = 74;
+            txtDocTypeId.Visible = false;
+            // 
+            // lblSearchStock
+            // 
+            lblSearchStock.AutoSize = true;
+            lblSearchStock.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblSearchStock.Location = new Point(20, 232);
+            lblSearchStock.Name = "lblSearchStock";
+            lblSearchStock.Size = new Size(94, 17);
+            lblSearchStock.TabIndex = 82;
+            lblSearchStock.Text = "ÇEŞİD AXTAR:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label3.Location = new Point(591, 90);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 19);
+            label3.TabIndex = 86;
+            label3.Text = "Anbar";
+            label3.Visible = false;
+            // 
+            // cmbWarehouse
+            // 
+            cmbWarehouse.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            cmbWarehouse.FormattingEnabled = true;
+            cmbWarehouse.Location = new Point(651, 83);
+            cmbWarehouse.Name = "cmbWarehouse";
+            cmbWarehouse.Size = new Size(75, 23);
+            cmbWarehouse.TabIndex = 87;
+            cmbWarehouse.Visible = false;
+            cmbWarehouse.SelectedIndexChanged += cmbWarehouse_SelectedIndexChanged;
+            // 
+            // txtWarehouseId
+            // 
+            txtWarehouseId.Enabled = false;
+            txtWarehouseId.Location = new Point(703, 112);
+            txtWarehouseId.Name = "txtWarehouseId";
+            txtWarehouseId.Size = new Size(23, 23);
+            txtWarehouseId.TabIndex = 88;
+            txtWarehouseId.Visible = false;
+            // 
+            // dtpDocDate
+            // 
+            dtpDocDate.Enabled = false;
+            dtpDocDate.Format = DateTimePickerFormat.Short;
+            dtpDocDate.Location = new Point(21, 170);
+            dtpDocDate.Name = "dtpDocDate";
+            dtpDocDate.Size = new Size(108, 23);
+            dtpDocDate.TabIndex = 89;
+            dtpDocDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
+            // 
+            // lblDiscount
+            // 
+            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblDiscount.AutoSize = true;
+            lblDiscount.Location = new Point(106, 40);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(54, 15);
+            lblDiscount.TabIndex = 100;
+            lblDiscount.Text = "Discount";
+            // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Location = new Point(106, 57);
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(80, 15);
+            lblTotalAmount.TabIndex = 101;
+            lblTotalAmount.Text = "Total Amount";
+            // 
+            // lblSubtotal
+            // 
+            lblSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblSubtotal.AutoSize = true;
+            lblSubtotal.Location = new Point(106, 23);
+            lblSubtotal.Name = "lblSubtotal";
+            lblSubtotal.Size = new Size(51, 15);
+            lblSubtotal.TabIndex = 99;
+            lblSubtotal.Text = "Subtotal";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(3, 7);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(86, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 106;
+            pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(lblSubtotal);
+            panel1.Controls.Add(lblTotalAmount);
+            panel1.Controls.Add(lblDiscount);
+            panel1.Location = new Point(752, 621);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(524, 78);
+            panel1.TabIndex = 105;
+            // 
+            // txtBarcode
+            // 
+            txtBarcode.Location = new Point(98, 262);
+            txtBarcode.Name = "txtBarcode";
+            txtBarcode.Size = new Size(294, 23);
+            txtBarcode.TabIndex = 106;
+            txtBarcode.KeyDown += txtBarcode_KeyDown;
+            // 
+            // lblBarcode
+            // 
+            lblBarcode.AutoSize = true;
+            lblBarcode.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblBarcode.Location = new Point(20, 264);
+            lblBarcode.Name = "lblBarcode";
+            lblBarcode.Size = new Size(65, 17);
+            lblBarcode.TabIndex = 107;
+            lblBarcode.Text = "BARKOD:";
+            // 
+            // chkDupCustomer
+            // 
+            chkDupCustomer.AutoSize = true;
+            chkDupCustomer.BackColor = Color.LimeGreen;
+            chkDupCustomer.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            chkDupCustomer.ForeColor = Color.Transparent;
+            chkDupCustomer.Location = new Point(1103, 13);
+            chkDupCustomer.Name = "chkDupCustomer";
+            chkDupCustomer.Size = new Size(173, 21);
+            chkDupCustomer.TabIndex = 69;
+            chkDupCustomer.Text = "MÜŞTƏRİ BAZASINDAN";
+            chkDupCustomer.UseVisualStyleBackColor = false;
+            chkDupCustomer.CheckedChanged += chkDupCustomer_CheckedChanged;
             // 
             // frmSale
             // 
