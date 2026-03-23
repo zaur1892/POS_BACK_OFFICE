@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSaleList));
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
@@ -41,28 +37,14 @@
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             createNewSaleDoc = new Button();
             dtpDocStartDate = new DateTimePicker();
             dtpDocEndDate = new DateTimePicker();
             adDgrvDocumentDetail = new Zuby.ADGV.AdvancedDataGridView();
-            DOC_NO = new DataGridViewTextBoxColumn();
-            BARCODE = new DataGridViewTextBoxColumn();
-            STOCK_NAME = new DataGridViewTextBoxColumn();
-            BASE_UNIT_NAME = new DataGridViewTextBoxColumn();
-            PURCHASE_UNIT_NAME = new DataGridViewTextBoxColumn();
-            cmbPurchaseUnitName = new DataGridViewComboBoxColumn();
-            QUANTITY = new DataGridViewTextBoxColumn();
-            TOTAL_QUANTITY = new DataGridViewTextBoxColumn();
-            DEFAULT_PRICE = new DataGridViewTextBoxColumn();
-            TOTAL_AMOUNT = new DataGridViewTextBoxColumn();
-            INSERT_DATE_TIME = new DataGridViewTextBoxColumn();
-            STOCK_ID = new DataGridViewTextBoxColumn();
-            PURCHASE_UNIT = new DataGridViewTextBoxColumn();
-            BASE_UNIT = new DataGridViewTextBoxColumn();
-            DETAIL_ID = new DataGridViewTextBoxColumn();
-            DISCOUNT_PER_CENT = new DataGridViewTextBoxColumn();
-            DISCOUNT_AMOUNT = new DataGridViewTextBoxColumn();
-            DELETED = new DataGridViewCheckBoxColumn();
             btnDocEdit = new Button();
             btnDocDelete = new Button();
             btnSave = new Button();
@@ -76,6 +58,12 @@
             panel3 = new Panel();
             lblModulName = new Label();
             adDgrvDocumentDetailStockSum = new Zuby.ADGV.AdvancedDataGridView();
+            STOCKNAME = new DataGridViewTextBoxColumn();
+            STOK_ID = new DataGridViewTextBoxColumn();
+            BOX_COUNT = new DataGridViewTextBoxColumn();
+            TOTAL = new DataGridViewTextBoxColumn();
+            PRICE = new DataGridViewTextBoxColumn();
+            TOTAL_SUM = new DataGridViewTextBoxColumn();
             adDgrvDocumentList = new Zuby.ADGV.AdvancedDataGridView();
             DOCNO = new DataGridViewTextBoxColumn();
             INSERT_DATETIME = new DataGridViewTextBoxColumn();
@@ -93,12 +81,24 @@
             HEADER_ID = new DataGridViewTextBoxColumn();
             CUSTOMER_ID = new DataGridViewTextBoxColumn();
             OFFLINE_DOC_NO = new DataGridViewTextBoxColumn();
-            STOCKNAME = new DataGridViewTextBoxColumn();
-            STOK_ID = new DataGridViewTextBoxColumn();
-            BOX_COUNT = new DataGridViewTextBoxColumn();
-            TOTAL = new DataGridViewTextBoxColumn();
-            PRICE = new DataGridViewTextBoxColumn();
-            TOTAL_SUM = new DataGridViewTextBoxColumn();
+            DOC_NO = new DataGridViewTextBoxColumn();
+            BARCODE = new DataGridViewTextBoxColumn();
+            STOCK_NAME = new DataGridViewTextBoxColumn();
+            BASE_UNIT_NAME = new DataGridViewTextBoxColumn();
+            PURCHASE_UNIT_NAME = new DataGridViewTextBoxColumn();
+            cmbPurchaseUnitName = new DataGridViewComboBoxColumn();
+            QUANTITY = new DataGridViewTextBoxColumn();
+            TOTAL_QUANTITY = new DataGridViewTextBoxColumn();
+            DEFAULT_PRICE = new DataGridViewTextBoxColumn();
+            TOTAL_AMOUNT = new DataGridViewTextBoxColumn();
+            INSERT_DATE_TIME = new DataGridViewTextBoxColumn();
+            STOCK_ID = new DataGridViewTextBoxColumn();
+            PURCHASE_UNIT = new DataGridViewTextBoxColumn();
+            BASE_UNIT = new DataGridViewTextBoxColumn();
+            DETAIL_ID = new DataGridViewTextBoxColumn();
+            DISCOUNT_PER_CENT = new DataGridViewTextBoxColumn();
+            DISCOUNT_AMOUNT = new DataGridViewTextBoxColumn();
+            STATUS = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)adDgrvDocumentDetail).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -109,32 +109,37 @@
             // 
             // createNewSaleDoc
             // 
-            createNewSaleDoc.BackColor = Color.LimeGreen;
+            createNewSaleDoc.BackColor = Color.Green;
+            createNewSaleDoc.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             createNewSaleDoc.ForeColor = Color.White;
-            createNewSaleDoc.Location = new Point(27, 10);
+            createNewSaleDoc.Location = new Point(27, 2);
             createNewSaleDoc.Name = "createNewSaleDoc";
-            createNewSaleDoc.Size = new Size(122, 32);
+            createNewSaleDoc.Size = new Size(187, 54);
             createNewSaleDoc.TabIndex = 0;
-            createNewSaleDoc.Text = "YENİ SATIŞ ➕";
+            createNewSaleDoc.Text = "YENİ SATIŞ ➕ \U0001f6d2";
             createNewSaleDoc.UseVisualStyleBackColor = false;
             createNewSaleDoc.Click += createNewDoc_Click;
             // 
             // dtpDocStartDate
             // 
+            dtpDocStartDate.CalendarFont = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            dtpDocStartDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtpDocStartDate.Format = DateTimePickerFormat.Short;
-            dtpDocStartDate.Location = new Point(900, 23);
+            dtpDocStartDate.Location = new Point(710, 23);
             dtpDocStartDate.Name = "dtpDocStartDate";
-            dtpDocStartDate.Size = new Size(108, 23);
+            dtpDocStartDate.Size = new Size(121, 33);
             dtpDocStartDate.TabIndex = 93;
             dtpDocStartDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
             dtpDocStartDate.ValueChanged += dtpDocStartDate_ValueChanged;
             // 
             // dtpDocEndDate
             // 
+            dtpDocEndDate.CalendarFont = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            dtpDocEndDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtpDocEndDate.Format = DateTimePickerFormat.Short;
-            dtpDocEndDate.Location = new Point(1014, 23);
+            dtpDocEndDate.Location = new Point(848, 23);
             dtpDocEndDate.Name = "dtpDocEndDate";
-            dtpDocEndDate.Size = new Size(108, 23);
+            dtpDocEndDate.Size = new Size(124, 33);
             dtpDocEndDate.TabIndex = 94;
             dtpDocEndDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
             dtpDocEndDate.ValueChanged += dtpDocEndDate_ValueChanged;
@@ -145,7 +150,7 @@
             adDgrvDocumentDetail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             adDgrvDocumentDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             adDgrvDocumentDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            adDgrvDocumentDetail.Columns.AddRange(new DataGridViewColumn[] { DOC_NO, BARCODE, STOCK_NAME, BASE_UNIT_NAME, PURCHASE_UNIT_NAME, cmbPurchaseUnitName, QUANTITY, TOTAL_QUANTITY, DEFAULT_PRICE, TOTAL_AMOUNT, INSERT_DATE_TIME, STOCK_ID, PURCHASE_UNIT, BASE_UNIT, DETAIL_ID, DISCOUNT_PER_CENT, DISCOUNT_AMOUNT, DELETED });
+            adDgrvDocumentDetail.Columns.AddRange(new DataGridViewColumn[] { DOC_NO, BARCODE, STOCK_NAME, BASE_UNIT_NAME, PURCHASE_UNIT_NAME, cmbPurchaseUnitName, QUANTITY, TOTAL_QUANTITY, DEFAULT_PRICE, TOTAL_AMOUNT, INSERT_DATE_TIME, STOCK_ID, PURCHASE_UNIT, BASE_UNIT, DETAIL_ID, DISCOUNT_PER_CENT, DISCOUNT_AMOUNT, STATUS });
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = SystemColors.Window;
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -165,212 +170,13 @@
             adDgrvDocumentDetail.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             adDgrvDocumentDetail.TabIndex = 95;
             // 
-            // DOC_NO
-            // 
-            DOC_NO.DataPropertyName = "DOC_NO";
-            DOC_NO.FillWeight = 63.23258F;
-            DOC_NO.HeaderText = "Satış No";
-            DOC_NO.MinimumWidth = 24;
-            DOC_NO.Name = "DOC_NO";
-            DOC_NO.ReadOnly = true;
-            DOC_NO.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // BARCODE
-            // 
-            BARCODE.DataPropertyName = "BARCODE";
-            BARCODE.FillWeight = 84.3101044F;
-            BARCODE.HeaderText = "Barkod";
-            BARCODE.MinimumWidth = 24;
-            BARCODE.Name = "BARCODE";
-            BARCODE.ReadOnly = true;
-            BARCODE.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // STOCK_NAME
-            // 
-            STOCK_NAME.DataPropertyName = "STOCK_NAME";
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            STOCK_NAME.DefaultCellStyle = dataGridViewCellStyle1;
-            STOCK_NAME.FillWeight = 126.465157F;
-            STOCK_NAME.HeaderText = "Çeşid";
-            STOCK_NAME.MinimumWidth = 24;
-            STOCK_NAME.Name = "STOCK_NAME";
-            STOCK_NAME.ReadOnly = true;
-            STOCK_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // BASE_UNIT_NAME
-            // 
-            BASE_UNIT_NAME.DataPropertyName = "BASE_UNIT_NAME";
-            BASE_UNIT_NAME.FillWeight = 80F;
-            BASE_UNIT_NAME.HeaderText = "Əsas Vahid";
-            BASE_UNIT_NAME.MinimumWidth = 24;
-            BASE_UNIT_NAME.Name = "BASE_UNIT_NAME";
-            BASE_UNIT_NAME.ReadOnly = true;
-            BASE_UNIT_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
-            BASE_UNIT_NAME.Visible = false;
-            // 
-            // PURCHASE_UNIT_NAME
-            // 
-            PURCHASE_UNIT_NAME.DataPropertyName = "PURCHASE_UNIT_NAME";
-            PURCHASE_UNIT_NAME.FillWeight = 80F;
-            PURCHASE_UNIT_NAME.HeaderText = "Alış Vahidi";
-            PURCHASE_UNIT_NAME.MinimumWidth = 24;
-            PURCHASE_UNIT_NAME.Name = "PURCHASE_UNIT_NAME";
-            PURCHASE_UNIT_NAME.ReadOnly = true;
-            PURCHASE_UNIT_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
-            PURCHASE_UNIT_NAME.Visible = false;
-            // 
-            // cmbPurchaseUnitName
-            // 
-            cmbPurchaseUnitName.HeaderText = "Alış Vahidi Seç";
-            cmbPurchaseUnitName.MinimumWidth = 24;
-            cmbPurchaseUnitName.Name = "cmbPurchaseUnitName";
-            cmbPurchaseUnitName.ReadOnly = true;
-            cmbPurchaseUnitName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            cmbPurchaseUnitName.Visible = false;
-            // 
-            // QUANTITY
-            // 
-            QUANTITY.DataPropertyName = "QUANTITY";
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
-            QUANTITY.FillWeight = 50.5860634F;
-            QUANTITY.HeaderText = "Çəki";
-            QUANTITY.MinimumWidth = 24;
-            QUANTITY.Name = "QUANTITY";
-            QUANTITY.ReadOnly = true;
-            QUANTITY.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // TOTAL_QUANTITY
-            // 
-            TOTAL_QUANTITY.DataPropertyName = "TOTAL_QUANTITY";
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            TOTAL_QUANTITY.DefaultCellStyle = dataGridViewCellStyle3;
-            TOTAL_QUANTITY.FillWeight = 80F;
-            TOTAL_QUANTITY.HeaderText = "CəmMiqdar";
-            TOTAL_QUANTITY.MinimumWidth = 24;
-            TOTAL_QUANTITY.Name = "TOTAL_QUANTITY";
-            TOTAL_QUANTITY.ReadOnly = true;
-            TOTAL_QUANTITY.SortMode = DataGridViewColumnSortMode.Programmatic;
-            TOTAL_QUANTITY.Visible = false;
-            // 
-            // DEFAULT_PRICE
-            // 
-            DEFAULT_PRICE.DataPropertyName = "DEFAULT_PRICE";
-            DEFAULT_PRICE.FillWeight = 60F;
-            DEFAULT_PRICE.HeaderText = "Qiymət";
-            DEFAULT_PRICE.MinimumWidth = 24;
-            DEFAULT_PRICE.Name = "DEFAULT_PRICE";
-            DEFAULT_PRICE.ReadOnly = true;
-            DEFAULT_PRICE.SortMode = DataGridViewColumnSortMode.Programmatic;
-            DEFAULT_PRICE.Visible = false;
-            // 
-            // TOTAL_AMOUNT
-            // 
-            TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle4;
-            TOTAL_AMOUNT.HeaderText = "Ümumi Cəm";
-            TOTAL_AMOUNT.MinimumWidth = 24;
-            TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
-            TOTAL_AMOUNT.ReadOnly = true;
-            TOTAL_AMOUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            TOTAL_AMOUNT.Visible = false;
-            // 
-            // INSERT_DATE_TIME
-            // 
-            INSERT_DATE_TIME.DataPropertyName = "INSERT_DATE_TIME";
-            INSERT_DATE_TIME.HeaderText = "Qeyd Tarixi";
-            INSERT_DATE_TIME.MinimumWidth = 24;
-            INSERT_DATE_TIME.Name = "INSERT_DATE_TIME";
-            INSERT_DATE_TIME.ReadOnly = true;
-            INSERT_DATE_TIME.SortMode = DataGridViewColumnSortMode.Programmatic;
-            INSERT_DATE_TIME.Visible = false;
-            // 
-            // STOCK_ID
-            // 
-            STOCK_ID.DataPropertyName = "STOCK_ID";
-            STOCK_ID.HeaderText = "STOCK_ID";
-            STOCK_ID.MinimumWidth = 24;
-            STOCK_ID.Name = "STOCK_ID";
-            STOCK_ID.ReadOnly = true;
-            STOCK_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            STOCK_ID.Visible = false;
-            // 
-            // PURCHASE_UNIT
-            // 
-            PURCHASE_UNIT.DataPropertyName = "PURCHASE_UNIT";
-            PURCHASE_UNIT.HeaderText = "PURCHASE_UNIT";
-            PURCHASE_UNIT.MinimumWidth = 24;
-            PURCHASE_UNIT.Name = "PURCHASE_UNIT";
-            PURCHASE_UNIT.ReadOnly = true;
-            PURCHASE_UNIT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            PURCHASE_UNIT.Visible = false;
-            // 
-            // BASE_UNIT
-            // 
-            BASE_UNIT.DataPropertyName = "BASE_UNIT";
-            BASE_UNIT.HeaderText = "BASE_UNIT";
-            BASE_UNIT.MinimumWidth = 24;
-            BASE_UNIT.Name = "BASE_UNIT";
-            BASE_UNIT.ReadOnly = true;
-            BASE_UNIT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            BASE_UNIT.Visible = false;
-            // 
-            // DETAIL_ID
-            // 
-            DETAIL_ID.DataPropertyName = "DETAIL_ID";
-            DETAIL_ID.HeaderText = "DETAIL_ID";
-            DETAIL_ID.MinimumWidth = 24;
-            DETAIL_ID.Name = "DETAIL_ID";
-            DETAIL_ID.ReadOnly = true;
-            DETAIL_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            DETAIL_ID.Visible = false;
-            // 
-            // DISCOUNT_PER_CENT
-            // 
-            DISCOUNT_PER_CENT.DataPropertyName = "DISCOUNT_PER_CENT";
-            DISCOUNT_PER_CENT.HeaderText = "DISCOUNT_PER_CENT";
-            DISCOUNT_PER_CENT.MinimumWidth = 24;
-            DISCOUNT_PER_CENT.Name = "DISCOUNT_PER_CENT";
-            DISCOUNT_PER_CENT.ReadOnly = true;
-            DISCOUNT_PER_CENT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            DISCOUNT_PER_CENT.Visible = false;
-            // 
-            // DISCOUNT_AMOUNT
-            // 
-            DISCOUNT_AMOUNT.DataPropertyName = "DISCOUNT_AMOUNT";
-            DISCOUNT_AMOUNT.HeaderText = "DISCOUNT_PER_CENT";
-            DISCOUNT_AMOUNT.MinimumWidth = 24;
-            DISCOUNT_AMOUNT.Name = "DISCOUNT_AMOUNT";
-            DISCOUNT_AMOUNT.ReadOnly = true;
-            DISCOUNT_AMOUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            DISCOUNT_AMOUNT.Visible = false;
-            // 
-            // DELETED
-            // 
-            DELETED.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DELETED.DataPropertyName = "STATUS_FOR_GRID";
-            DELETED.FalseValue = "false";
-            DELETED.FillWeight = 50F;
-            DELETED.HeaderText = "SIL";
-            DELETED.MinimumWidth = 24;
-            DELETED.Name = "DELETED";
-            DELETED.ReadOnly = true;
-            DELETED.Resizable = DataGridViewTriState.True;
-            DELETED.SortMode = DataGridViewColumnSortMode.Programmatic;
-            DELETED.TrueValue = "true";
-            DELETED.Width = 50;
-            // 
             // btnDocEdit
             // 
             btnDocEdit.BackColor = SystemColors.ActiveCaption;
-            btnDocEdit.Location = new Point(155, 10);
+            btnDocEdit.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDocEdit.Location = new Point(220, 2);
             btnDocEdit.Name = "btnDocEdit";
-            btnDocEdit.Size = new Size(122, 32);
+            btnDocEdit.Size = new Size(167, 54);
             btnDocEdit.TabIndex = 96;
             btnDocEdit.Text = "REDAKTƏ ✏️";
             btnDocEdit.UseVisualStyleBackColor = false;
@@ -379,10 +185,11 @@
             // btnDocDelete
             // 
             btnDocDelete.BackColor = Color.Red;
+            btnDocDelete.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDocDelete.ForeColor = Color.White;
-            btnDocDelete.Location = new Point(283, 11);
+            btnDocDelete.Location = new Point(393, 2);
             btnDocDelete.Name = "btnDocDelete";
-            btnDocDelete.Size = new Size(114, 32);
+            btnDocDelete.Size = new Size(159, 57);
             btnDocDelete.TabIndex = 97;
             btnDocDelete.Text = "SİLMƏK ➖ ✖";
             btnDocDelete.UseVisualStyleBackColor = false;
@@ -433,7 +240,7 @@
             lblTotalAmount.AutoSize = true;
             lblTotalAmount.Location = new Point(198, 38);
             lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(80, 15);
+            lblTotalAmount.Size = new Size(79, 15);
             lblTotalAmount.TabIndex = 101;
             lblTotalAmount.Text = "Total Amount";
             // 
@@ -473,7 +280,7 @@
             // 
             // txtDocTypeId
             // 
-            txtDocTypeId.Location = new Point(412, 20);
+            txtDocTypeId.Location = new Point(576, 34);
             txtDocTypeId.Name = "txtDocTypeId";
             txtDocTypeId.Size = new Size(100, 23);
             txtDocTypeId.TabIndex = 105;
@@ -523,6 +330,64 @@
             adDgrvDocumentDetailStockSum.Size = new Size(623, 364);
             adDgrvDocumentDetailStockSum.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             adDgrvDocumentDetailStockSum.TabIndex = 111;
+            adDgrvDocumentDetailStockSum.CellValueChanged += adDgrvDocumentDetailStockSum_CellValueChanged;
+            // 
+            // STOCKNAME
+            // 
+            STOCKNAME.DataPropertyName = "STOCK_NAME";
+            STOCKNAME.HeaderText = "Çeşid";
+            STOCKNAME.MinimumWidth = 24;
+            STOCKNAME.Name = "STOCKNAME";
+            STOCKNAME.ReadOnly = true;
+            STOCKNAME.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // STOK_ID
+            // 
+            STOK_ID.DataPropertyName = "STOCK_ID";
+            STOK_ID.HeaderText = "STOK_ID";
+            STOK_ID.MinimumWidth = 24;
+            STOK_ID.Name = "STOK_ID";
+            STOK_ID.ReadOnly = true;
+            STOK_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            STOK_ID.Visible = false;
+            // 
+            // BOX_COUNT
+            // 
+            BOX_COUNT.DataPropertyName = "BOX_COUNT";
+            BOX_COUNT.HeaderText = "Qutu Say";
+            BOX_COUNT.MinimumWidth = 24;
+            BOX_COUNT.Name = "BOX_COUNT";
+            BOX_COUNT.ReadOnly = true;
+            BOX_COUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // TOTAL
+            // 
+            TOTAL.DataPropertyName = "TOTAL";
+            TOTAL.HeaderText = "Toplam Çəki";
+            TOTAL.MinimumWidth = 24;
+            TOTAL.Name = "TOTAL";
+            TOTAL.ReadOnly = true;
+            TOTAL.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // PRICE
+            // 
+            PRICE.DataPropertyName = "PRICE";
+            PRICE.HeaderText = "Qiymət";
+            PRICE.MinimumWidth = 24;
+            PRICE.Name = "PRICE";
+            PRICE.ReadOnly = true;
+            PRICE.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // TOTAL_SUM
+            // 
+            TOTAL_SUM.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            TOTAL_SUM.DataPropertyName = "TOTAL_SUM";
+            TOTAL_SUM.HeaderText = "Toplam AZN";
+            TOTAL_SUM.MinimumWidth = 24;
+            TOTAL_SUM.Name = "TOTAL_SUM";
+            TOTAL_SUM.ReadOnly = true;
+            TOTAL_SUM.SortMode = DataGridViewColumnSortMode.Programmatic;
+            TOTAL_SUM.Width = 105;
             // 
             // adDgrvDocumentList
             // 
@@ -708,62 +573,201 @@
             OFFLINE_DOC_NO.SortMode = DataGridViewColumnSortMode.Programmatic;
             OFFLINE_DOC_NO.Visible = false;
             // 
-            // STOCKNAME
+            // DOC_NO
             // 
-            STOCKNAME.DataPropertyName = "STOCK_NAME";
-            STOCKNAME.HeaderText = "Çeşid";
-            STOCKNAME.MinimumWidth = 24;
-            STOCKNAME.Name = "STOCKNAME";
-            STOCKNAME.ReadOnly = true;
-            STOCKNAME.SortMode = DataGridViewColumnSortMode.Programmatic;
+            DOC_NO.DataPropertyName = "DOC_NO";
+            DOC_NO.FillWeight = 62.9304123F;
+            DOC_NO.HeaderText = "Satış No";
+            DOC_NO.MinimumWidth = 24;
+            DOC_NO.Name = "DOC_NO";
+            DOC_NO.ReadOnly = true;
+            DOC_NO.Resizable = DataGridViewTriState.True;
+            DOC_NO.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
-            // STOK_ID
+            // BARCODE
             // 
-            STOK_ID.DataPropertyName = "STOCK_ID";
-            STOK_ID.HeaderText = "STOK_ID";
-            STOK_ID.MinimumWidth = 24;
-            STOK_ID.Name = "STOK_ID";
-            STOK_ID.ReadOnly = true;
-            STOK_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            STOK_ID.Visible = false;
+            BARCODE.DataPropertyName = "BARCODE";
+            BARCODE.FillWeight = 83.90722F;
+            BARCODE.HeaderText = "Barkod";
+            BARCODE.MinimumWidth = 24;
+            BARCODE.Name = "BARCODE";
+            BARCODE.ReadOnly = true;
+            BARCODE.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
-            // BOX_COUNT
+            // STOCK_NAME
             // 
-            BOX_COUNT.DataPropertyName = "BOX_COUNT";
-            BOX_COUNT.HeaderText = "Qutu Say";
-            BOX_COUNT.MinimumWidth = 24;
-            BOX_COUNT.Name = "BOX_COUNT";
-            BOX_COUNT.ReadOnly = true;
-            BOX_COUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            STOCK_NAME.DataPropertyName = "STOCK_NAME";
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            STOCK_NAME.DefaultCellStyle = dataGridViewCellStyle1;
+            STOCK_NAME.FillWeight = 125.860825F;
+            STOCK_NAME.HeaderText = "Çeşid";
+            STOCK_NAME.MinimumWidth = 24;
+            STOCK_NAME.Name = "STOCK_NAME";
+            STOCK_NAME.ReadOnly = true;
+            STOCK_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
-            // TOTAL
+            // BASE_UNIT_NAME
             // 
-            TOTAL.DataPropertyName = "TOTAL";
-            TOTAL.HeaderText = "Toplam Çəki";
-            TOTAL.MinimumWidth = 24;
-            TOTAL.Name = "TOTAL";
-            TOTAL.ReadOnly = true;
-            TOTAL.SortMode = DataGridViewColumnSortMode.Programmatic;
+            BASE_UNIT_NAME.DataPropertyName = "BASE_UNIT_NAME";
+            BASE_UNIT_NAME.FillWeight = 80F;
+            BASE_UNIT_NAME.HeaderText = "Əsas Vahid";
+            BASE_UNIT_NAME.MinimumWidth = 24;
+            BASE_UNIT_NAME.Name = "BASE_UNIT_NAME";
+            BASE_UNIT_NAME.ReadOnly = true;
+            BASE_UNIT_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
+            BASE_UNIT_NAME.Visible = false;
             // 
-            // PRICE
+            // PURCHASE_UNIT_NAME
             // 
-            PRICE.DataPropertyName = "PRICE";
-            PRICE.HeaderText = "Qiymət";
-            PRICE.MinimumWidth = 24;
-            PRICE.Name = "PRICE";
-            PRICE.ReadOnly = true;
-            PRICE.SortMode = DataGridViewColumnSortMode.Programmatic;
+            PURCHASE_UNIT_NAME.DataPropertyName = "PURCHASE_UNIT_NAME";
+            PURCHASE_UNIT_NAME.FillWeight = 80F;
+            PURCHASE_UNIT_NAME.HeaderText = "Alış Vahidi";
+            PURCHASE_UNIT_NAME.MinimumWidth = 24;
+            PURCHASE_UNIT_NAME.Name = "PURCHASE_UNIT_NAME";
+            PURCHASE_UNIT_NAME.ReadOnly = true;
+            PURCHASE_UNIT_NAME.SortMode = DataGridViewColumnSortMode.Programmatic;
+            PURCHASE_UNIT_NAME.Visible = false;
             // 
-            // TOTAL_SUM
+            // cmbPurchaseUnitName
             // 
-            TOTAL_SUM.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            TOTAL_SUM.DataPropertyName = "TOTAL_SUM";
-            TOTAL_SUM.HeaderText = "Toplam AZN";
-            TOTAL_SUM.MinimumWidth = 24;
-            TOTAL_SUM.Name = "TOTAL_SUM";
-            TOTAL_SUM.ReadOnly = true;
-            TOTAL_SUM.SortMode = DataGridViewColumnSortMode.Programmatic;
-            TOTAL_SUM.Width = 105;
+            cmbPurchaseUnitName.HeaderText = "Alış Vahidi Seç";
+            cmbPurchaseUnitName.MinimumWidth = 24;
+            cmbPurchaseUnitName.Name = "cmbPurchaseUnitName";
+            cmbPurchaseUnitName.ReadOnly = true;
+            cmbPurchaseUnitName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            cmbPurchaseUnitName.Visible = false;
+            // 
+            // QUANTITY
+            // 
+            QUANTITY.DataPropertyName = "QUANTITY";
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
+            QUANTITY.FillWeight = 50.344326F;
+            QUANTITY.HeaderText = "Çəki";
+            QUANTITY.MinimumWidth = 24;
+            QUANTITY.Name = "QUANTITY";
+            QUANTITY.ReadOnly = true;
+            QUANTITY.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // TOTAL_QUANTITY
+            // 
+            TOTAL_QUANTITY.DataPropertyName = "TOTAL_QUANTITY";
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            TOTAL_QUANTITY.DefaultCellStyle = dataGridViewCellStyle3;
+            TOTAL_QUANTITY.FillWeight = 80F;
+            TOTAL_QUANTITY.HeaderText = "CəmMiqdar";
+            TOTAL_QUANTITY.MinimumWidth = 24;
+            TOTAL_QUANTITY.Name = "TOTAL_QUANTITY";
+            TOTAL_QUANTITY.ReadOnly = true;
+            TOTAL_QUANTITY.SortMode = DataGridViewColumnSortMode.Programmatic;
+            TOTAL_QUANTITY.Visible = false;
+            // 
+            // DEFAULT_PRICE
+            // 
+            DEFAULT_PRICE.DataPropertyName = "DEFAULT_PRICE";
+            DEFAULT_PRICE.FillWeight = 59.71328F;
+            DEFAULT_PRICE.HeaderText = "Qiymət";
+            DEFAULT_PRICE.MinimumWidth = 24;
+            DEFAULT_PRICE.Name = "DEFAULT_PRICE";
+            DEFAULT_PRICE.ReadOnly = true;
+            DEFAULT_PRICE.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // TOTAL_AMOUNT
+            // 
+            TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle4;
+            TOTAL_AMOUNT.HeaderText = "Ümumi Cəm";
+            TOTAL_AMOUNT.MinimumWidth = 24;
+            TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
+            TOTAL_AMOUNT.ReadOnly = true;
+            TOTAL_AMOUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            TOTAL_AMOUNT.Visible = false;
+            // 
+            // INSERT_DATE_TIME
+            // 
+            INSERT_DATE_TIME.DataPropertyName = "INSERT_DATE_TIME";
+            INSERT_DATE_TIME.HeaderText = "Qeyd Tarixi";
+            INSERT_DATE_TIME.MinimumWidth = 24;
+            INSERT_DATE_TIME.Name = "INSERT_DATE_TIME";
+            INSERT_DATE_TIME.ReadOnly = true;
+            INSERT_DATE_TIME.SortMode = DataGridViewColumnSortMode.Programmatic;
+            INSERT_DATE_TIME.Visible = false;
+            // 
+            // STOCK_ID
+            // 
+            STOCK_ID.DataPropertyName = "STOCK_ID";
+            STOCK_ID.HeaderText = "STOCK_ID";
+            STOCK_ID.MinimumWidth = 24;
+            STOCK_ID.Name = "STOCK_ID";
+            STOCK_ID.ReadOnly = true;
+            STOCK_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            STOCK_ID.Visible = false;
+            // 
+            // PURCHASE_UNIT
+            // 
+            PURCHASE_UNIT.DataPropertyName = "PURCHASE_UNIT";
+            PURCHASE_UNIT.HeaderText = "PURCHASE_UNIT";
+            PURCHASE_UNIT.MinimumWidth = 24;
+            PURCHASE_UNIT.Name = "PURCHASE_UNIT";
+            PURCHASE_UNIT.ReadOnly = true;
+            PURCHASE_UNIT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            PURCHASE_UNIT.Visible = false;
+            // 
+            // BASE_UNIT
+            // 
+            BASE_UNIT.DataPropertyName = "BASE_UNIT";
+            BASE_UNIT.HeaderText = "BASE_UNIT";
+            BASE_UNIT.MinimumWidth = 24;
+            BASE_UNIT.Name = "BASE_UNIT";
+            BASE_UNIT.ReadOnly = true;
+            BASE_UNIT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            BASE_UNIT.Visible = false;
+            // 
+            // DETAIL_ID
+            // 
+            DETAIL_ID.DataPropertyName = "DETAIL_ID";
+            DETAIL_ID.HeaderText = "DETAIL_ID";
+            DETAIL_ID.MinimumWidth = 24;
+            DETAIL_ID.Name = "DETAIL_ID";
+            DETAIL_ID.ReadOnly = true;
+            DETAIL_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            DETAIL_ID.Visible = false;
+            // 
+            // DISCOUNT_PER_CENT
+            // 
+            DISCOUNT_PER_CENT.DataPropertyName = "DISCOUNT_PER_CENT";
+            DISCOUNT_PER_CENT.HeaderText = "DISCOUNT_PER_CENT";
+            DISCOUNT_PER_CENT.MinimumWidth = 24;
+            DISCOUNT_PER_CENT.Name = "DISCOUNT_PER_CENT";
+            DISCOUNT_PER_CENT.ReadOnly = true;
+            DISCOUNT_PER_CENT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            DISCOUNT_PER_CENT.Visible = false;
+            // 
+            // DISCOUNT_AMOUNT
+            // 
+            DISCOUNT_AMOUNT.DataPropertyName = "DISCOUNT_AMOUNT";
+            DISCOUNT_AMOUNT.HeaderText = "DISCOUNT_PER_CENT";
+            DISCOUNT_AMOUNT.MinimumWidth = 24;
+            DISCOUNT_AMOUNT.Name = "DISCOUNT_AMOUNT";
+            DISCOUNT_AMOUNT.ReadOnly = true;
+            DISCOUNT_AMOUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            DISCOUNT_AMOUNT.Visible = false;
+            // 
+            // STATUS
+            // 
+            STATUS.DataPropertyName = "STATUS";
+            STATUS.FillWeight = 11.8378172F;
+            STATUS.HeaderText = "SIL";
+            STATUS.MinimumWidth = 24;
+            STATUS.Name = "STATUS";
+            STATUS.ReadOnly = true;
+            STATUS.Resizable = DataGridViewTriState.True;
+            STATUS.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // frmSaleList
             // 
@@ -821,24 +825,6 @@
         private Zuby.ADGV.AdvancedDataGridView adDgrvDocumentDetailStockSum;
         private Button btnSaveAsPDF;
         private Zuby.ADGV.AdvancedDataGridView adDgrvDocumentList;
-        private DataGridViewTextBoxColumn DOC_NO;
-        private DataGridViewTextBoxColumn BARCODE;
-        private DataGridViewTextBoxColumn STOCK_NAME;
-        private DataGridViewTextBoxColumn BASE_UNIT_NAME;
-        private DataGridViewTextBoxColumn PURCHASE_UNIT_NAME;
-        private DataGridViewComboBoxColumn cmbPurchaseUnitName;
-        private DataGridViewTextBoxColumn QUANTITY;
-        private DataGridViewTextBoxColumn TOTAL_QUANTITY;
-        private DataGridViewTextBoxColumn DEFAULT_PRICE;
-        private DataGridViewTextBoxColumn TOTAL_AMOUNT;
-        private DataGridViewTextBoxColumn INSERT_DATE_TIME;
-        private DataGridViewTextBoxColumn STOCK_ID;
-        private DataGridViewTextBoxColumn PURCHASE_UNIT;
-        private DataGridViewTextBoxColumn BASE_UNIT;
-        private DataGridViewTextBoxColumn DETAIL_ID;
-        private DataGridViewTextBoxColumn DISCOUNT_PER_CENT;
-        private DataGridViewTextBoxColumn DISCOUNT_AMOUNT;
-        private DataGridViewCheckBoxColumn DELETED;
         private DataGridViewTextBoxColumn DOCNO;
         private DataGridViewTextBoxColumn INSERT_DATETIME;
         private DataGridViewTextBoxColumn ACC_NAME;
@@ -861,5 +847,24 @@
         private DataGridViewTextBoxColumn TOTAL;
         private DataGridViewTextBoxColumn PRICE;
         private DataGridViewTextBoxColumn TOTAL_SUM;
+        private DataGridViewCheckBoxColumn DELETED;
+        private DataGridViewTextBoxColumn DOC_NO;
+        private DataGridViewTextBoxColumn BARCODE;
+        private DataGridViewTextBoxColumn STOCK_NAME;
+        private DataGridViewTextBoxColumn BASE_UNIT_NAME;
+        private DataGridViewTextBoxColumn PURCHASE_UNIT_NAME;
+        private DataGridViewComboBoxColumn cmbPurchaseUnitName;
+        private DataGridViewTextBoxColumn QUANTITY;
+        private DataGridViewTextBoxColumn TOTAL_QUANTITY;
+        private DataGridViewTextBoxColumn DEFAULT_PRICE;
+        private DataGridViewTextBoxColumn TOTAL_AMOUNT;
+        private DataGridViewTextBoxColumn INSERT_DATE_TIME;
+        private DataGridViewTextBoxColumn STOCK_ID;
+        private DataGridViewTextBoxColumn PURCHASE_UNIT;
+        private DataGridViewTextBoxColumn BASE_UNIT;
+        private DataGridViewTextBoxColumn DETAIL_ID;
+        private DataGridViewTextBoxColumn DISCOUNT_PER_CENT;
+        private DataGridViewTextBoxColumn DISCOUNT_AMOUNT;
+        private DataGridViewCheckBoxColumn STATUS;
     }
 }

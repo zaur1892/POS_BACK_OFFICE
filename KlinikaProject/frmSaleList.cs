@@ -315,7 +315,7 @@ namespace POS_BACK_OFFICE
                 }
 
                 // **İcazə verilən sütunlar**
-                string[] editableColumns = { "QUANTITY", "DEFAULT_PRICE", "PURCHASE_UNIT_NAME", "cmbPurchaseUnitName", "DELETED" };
+                string[] editableColumns = { "QUANTITY", "DEFAULT_PRICE", "PURCHASE_UNIT_NAME", "cmbPurchaseUnitName", "STATUS" };
                 foreach (string colName in editableColumns)
                 {
                     if (adDgrvDocumentDetail.Columns.Contains(colName))
@@ -354,10 +354,10 @@ namespace POS_BACK_OFFICE
 
                 DataGridViewRow row = adDgrvDocumentDetail.Rows[ev.RowIndex];
 
-                // **Əgər "Deleted" sütunu dəyişilibsə**
-                if (adDgrvDocumentDetail.Columns[ev.ColumnIndex].Name == "DELETED")
+                // **Əgər "STATUS" sütunu dəyişilibsə**
+                if (adDgrvDocumentDetail.Columns[ev.ColumnIndex].Name == "STATUS")
                 {
-                    bool isDeleted = Convert.ToBoolean(row.Cells["DELETED"].Value ?? false);
+                    bool isDeleted = Convert.ToBoolean(row.Cells["STATUS"].Value ?? false);
                     row.DefaultCellStyle.BackColor = isDeleted ? Color.Red : Color.White; // Seçiləndə qırmızı, seçilməyəndə ağ
                     return; // Qalan hesablamaları etmədən çıxırıq
                 }
@@ -413,20 +413,19 @@ namespace POS_BACK_OFFICE
                 connection.Open();
 
                 int docNo = 0;
+
                 if (adDgrvDocumentDetail.Rows.Count > 0 && adDgrvDocumentDetail.Rows[0].Cells["DOC_NO"].Value != null)
                 {
                     docNo = Convert.ToInt32(adDgrvDocumentDetail.Rows[0].Cells["DOC_NO"].Value);
                 }
 
-                foreach (DataGridViewRow row in adDgrvDocumentDetail.Rows)
+                var row = adDgrvDocumentDetail.CurrentRow;
+                if (row != null && row.Cells["DETAIL_ID"].Value != null && row.Cells["DOC_NO"].Value != null)
                 {
-                    if (row.Cells["DETAIL_ID"].Value == null || row.Cells["DOC_NO"].Value == null) continue;
-
                     int detailId = Convert.ToInt32(row.Cells["DETAIL_ID"].Value);
-                    bool isDeleted = row.Cells["Deleted"] is DataGridViewCheckBoxCell checkbox && checkbox.Value != null && (bool)checkbox.Value;
+                    bool isDeleted = row.Cells["status"].Value is bool value && value;
 
-
-                    using (SqlCommand cmd = new SqlCommand("SP_UpdateTransferDetails", connection))
+                    using (SqlCommand cmd = new SqlCommand("SP_UpdateDocumentDetails", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -436,48 +435,48 @@ namespace POS_BACK_OFFICE
                         cmd.Parameters.AddWithValue("@TotalQuantity", Convert.ToDecimal(row.Cells["TOTAL_QUANTITY"].Value ?? 0));
                         cmd.Parameters.AddWithValue("@DefaultPrice", Convert.ToDecimal(row.Cells["DEFAULT_PRICE"].Value ?? 0));
                         cmd.Parameters.AddWithValue("@PurchaseUnit", Convert.ToInt32(row.Cells["PURCHASE_UNIT"].Value ?? 0));
-                        // Həmin hissədə `TOTAL_AMOUNT`-ı yoxlayırıq ki, NULL göndərilməsin
                         decimal totalAmount = Convert.ToDecimal(row.Cells["TOTAL_AMOUNT"].Value ?? 0);
-                        cmd.Parameters.AddWithValue("@TotalAmount", totalAmount == 0 ? 0 : totalAmount); // NULL yerinə 0 göndəririk
+                        cmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                        cmd.Parameters.AddWithValue("@Deleted", isDeleted);
 
-                        cmd.Parameters.AddWithValue("@Deleted", isDeleted ? 1 : 0);
+                        int affectedRows = cmd.ExecuteNonQuery();
+
+                        if (affectedRows == 0)
+                        {
+                            MessageBox.Show("Heç bir sətir yenilənmədi. Parametrləri yoxlayın.", "Diqqət", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                    // Başlıq cədvəlini yenilə
+                    using (SqlCommand cmd = new SqlCommand("SP_UpdateDocumentHeader", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@DocNo", docNo);
+                        cmd.Parameters.AddWithValue("@UserId", lblUserId.Text);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
 
-                // `DOCUMENT_HEADER` cədvəlində TOTAL_AMOUNT-u yenilə
-                using (SqlCommand cmd = new SqlCommand("SP_UpdateTransferHeader", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@DocNo", docNo);
-                    cmd.Parameters.AddWithValue("@UserId", lblUserId.Text);
-
-                    cmd.ExecuteNonQuery();
-                }
-
                 connection.Close();
             }
 
-            MessageBox.Show("Bütün dəyişikliklər uğurla yadda saxlandı!", "Uğur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Seçilmiş sətr uğurla yeniləndi!", "Uğur", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // **Redaktə rejimindən çıx**
-            btnDocEdit.BackColor = SystemColors.Control;  // Standart rəngə qaytar
+            // Redaktə rejimindən çıx
+            btnDocEdit.BackColor = SystemColors.Control;
             btnDocEdit.ForeColor = SystemColors.ControlText;
-            btnDocEdit.Text = "DÜZƏLİŞ ✏️";  // Əvvəlki adına qaytar
-            btnDocEdit.Enabled = true; // Yenidən aktiv et
+            btnDocEdit.Text = "DÜZƏLİŞ ✏️";
+            btnDocEdit.Enabled = true;
 
-            // **btnSave düyməsini deaktiv et**
             btnSave.Enabled = false;
 
-            // **DatagridView-ləri əvvəlki vəziyyətinə qaytar**
             adDgrvDocumentList.DefaultCellStyle.BackColor = SystemColors.Window;
             adDgrvDocumentList.DefaultCellStyle.ForeColor = SystemColors.ControlText;
 
             adDgrvDocumentDetail.DefaultCellStyle.BackColor = SystemColors.Window;
             adDgrvDocumentDetail.DefaultCellStyle.ForeColor = SystemColors.ControlText;
 
-            // **Sütunları yenidən "ReadOnly" et (redaktəni qapat)**
             foreach (DataGridViewColumn column in adDgrvDocumentList.Columns)
             {
                 column.ReadOnly = true;
@@ -490,6 +489,7 @@ namespace POS_BACK_OFFICE
 
             LoadDocumentList();
         }
+
         private void btnSaveAsPDF_Click(object sender, EventArgs e)
         {
             var settings = LoadAppSettingsFromDB(); // DB-dən AppSetting-ləri yükləyirsən
@@ -540,7 +540,7 @@ namespace POS_BACK_OFFICE
             {
                 MessageBox.Show("Fayl saxlanmadı", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-    
+
         }
 
 
@@ -570,7 +570,29 @@ namespace POS_BACK_OFFICE
             return list;
         }
 
+        private void adDgrvDocumentDetailStockSum_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Sətir və sütun düzgündürsə davam et
+            if (e.RowIndex >= 0 && adDgrvDocumentDetailStockSum.Columns[e.ColumnIndex].Name == "PRICE")
+            {
+                var row = adDgrvDocumentDetailStockSum.Rows[e.RowIndex];
+                var stockId = row.Cells["STOK_ID"].Value?.ToString();
+                var newPrice = row.Cells["PRICE"].Value;
 
+                if (string.IsNullOrEmpty(stockId) || newPrice == null)
+                    return;
+
+                // detail grid-də bütün uyğun STOK_ID sətirlərini tap və PRICE sahəsini yenilə
+                foreach (DataGridViewRow detailRow in adDgrvDocumentDetail.Rows)
+                {
+                    var detailStockId = detailRow.Cells["STOCK_ID"].Value?.ToString();
+                    if (detailStockId == stockId)
+                    {
+                        detailRow.Cells["DEFAULT_PRICE"].Value = newPrice;
+                    }
+                }
+            }
+        }
 
     }
 }

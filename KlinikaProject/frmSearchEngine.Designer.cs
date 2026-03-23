@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            createNewDoc = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             dtpDocStartDate = new DateTimePicker();
             dtpDocEndDate = new DateTimePicker();
-            adDgrvDocumentDetail = new Zuby.ADGV.AdvancedDataGridView();
-            DOC_NO = new DataGridViewTextBoxColumn();
+            adDgrvSearchEngineDetail = new Zuby.ADGV.AdvancedDataGridView();
             DOC_DATE = new DataGridViewTextBoxColumn();
+            DOC_NO = new DataGridViewTextBoxColumn();
             Customer = new DataGridViewTextBoxColumn();
             TYPE_NAME = new DataGridViewTextBoxColumn();
             STOCK_NAME = new DataGridViewTextBoxColumn();
@@ -56,72 +55,82 @@
             PURCHASE_UNIT = new DataGridViewTextBoxColumn();
             BASE_UNIT = new DataGridViewTextBoxColumn();
             DETAIL_ID = new DataGridViewTextBoxColumn();
+            ACCOUNT_ID = new DataGridViewTextBoxColumn();
+            DOCUMENT_TYPE = new DataGridViewTextBoxColumn();
             lblUserName = new Label();
             lblUserId = new Label();
-            lblTotalAmount = new Label();
-            lblDiscount = new Label();
-            lblSubtotal = new Label();
-            panel1 = new Panel();
-            txtCustomer = new TextBox();
-            lblSearchStock = new Label();
-            btnSave = new Button();
-            txtStock = new TextBox();
-            label1 = new Label();
             lblDocType = new Label();
             txtDocNo = new TextBox();
+            label2 = new Label();
+            txtStockId = new TextBox();
+            lstStock = new ListBox();
+            txtStock = new TextBox();
+            label1 = new Label();
+            txtCustomerID = new TextBox();
+            lstCustomer = new ListBox();
+            txtCustomer = new TextBox();
+            lbDocNo = new Label();
+            txtDocTypeId = new TextBox();
+            lstDocType = new ListBox();
+            txtDocType = new TextBox();
             label3 = new Label();
-            comboBox1 = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)adDgrvDocumentDetail).BeginInit();
+            btnUpdate = new Button();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            ((System.ComponentModel.ISupportInitialize)adDgrvSearchEngineDetail).BeginInit();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // createNewDoc
-            // 
-            createNewDoc.BackColor = Color.LimeGreen;
-            createNewDoc.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createNewDoc.ForeColor = Color.White;
-            createNewDoc.Location = new Point(27, 10);
-            createNewDoc.Name = "createNewDoc";
-            createNewDoc.Size = new Size(124, 32);
-            createNewDoc.TabIndex = 0;
-            createNewDoc.Text = "YENİ STOK ➕";
-            createNewDoc.UseVisualStyleBackColor = false;
-            createNewDoc.Click += createNewDoc_Click;
             // 
             // dtpDocStartDate
             // 
+            dtpDocStartDate.CalendarFont = new Font("Segoe UI", 12F);
+            dtpDocStartDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDocStartDate.Format = DateTimePickerFormat.Short;
-            dtpDocStartDate.Location = new Point(181, 19);
+            dtpDocStartDate.Location = new Point(161, 17);
             dtpDocStartDate.Name = "dtpDocStartDate";
-            dtpDocStartDate.Size = new Size(108, 23);
+            dtpDocStartDate.Size = new Size(108, 29);
             dtpDocStartDate.TabIndex = 93;
             dtpDocStartDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
+            dtpDocStartDate.ValueChanged += dtpDocStartDate_ValueChanged;
             // 
             // dtpDocEndDate
             // 
+            dtpDocEndDate.CalendarFont = new Font("Segoe UI", 12F);
+            dtpDocEndDate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDocEndDate.Format = DateTimePickerFormat.Short;
-            dtpDocEndDate.Location = new Point(295, 19);
+            dtpDocEndDate.Location = new Point(275, 17);
             dtpDocEndDate.Name = "dtpDocEndDate";
-            dtpDocEndDate.Size = new Size(106, 23);
+            dtpDocEndDate.Size = new Size(106, 29);
             dtpDocEndDate.TabIndex = 94;
             dtpDocEndDate.Value = new DateTime(2025, 3, 27, 0, 0, 0, 0);
+            dtpDocEndDate.ValueChanged += dtpDocEndDate_ValueChanged;
             // 
-            // adDgrvDocumentDetail
+            // adDgrvSearchEngineDetail
             // 
-            adDgrvDocumentDetail.AllowUserToAddRows = false;
-            adDgrvDocumentDetail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            adDgrvDocumentDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            adDgrvDocumentDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            adDgrvDocumentDetail.Columns.AddRange(new DataGridViewColumn[] { DOC_NO, DOC_DATE, Customer, TYPE_NAME, STOCK_NAME, QUANTITY, TOTAL_AMOUNT, DEFAULT_PRICE, TOTAL_QUANTITY, BASE_UNIT_NAME, DISCOUNT_PER_CENT, DISCOUNT_AMOUNT, INSERT_DATE_TIME, PURCHASE_UNIT_NAME, STOCK_ID, PURCHASE_UNIT, BASE_UNIT, DETAIL_ID });
-            adDgrvDocumentDetail.FilterAndSortEnabled = true;
-            adDgrvDocumentDetail.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
-            adDgrvDocumentDetail.Location = new Point(27, 63);
-            adDgrvDocumentDetail.MaxFilterButtonImageHeight = 23;
-            adDgrvDocumentDetail.Name = "adDgrvDocumentDetail";
-            adDgrvDocumentDetail.RightToLeft = RightToLeft.No;
-            adDgrvDocumentDetail.Size = new Size(1782, 712);
-            adDgrvDocumentDetail.SortStringChangedInvokeBeforeDatasourceUpdate = true;
-            adDgrvDocumentDetail.TabIndex = 95;
+            adDgrvSearchEngineDetail.AllowUserToAddRows = false;
+            adDgrvSearchEngineDetail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            adDgrvSearchEngineDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            adDgrvSearchEngineDetail.BackgroundColor = SystemColors.ButtonFace;
+            adDgrvSearchEngineDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            adDgrvSearchEngineDetail.Columns.AddRange(new DataGridViewColumn[] { DOC_DATE, DOC_NO, Customer, TYPE_NAME, STOCK_NAME, QUANTITY, TOTAL_AMOUNT, DEFAULT_PRICE, TOTAL_QUANTITY, BASE_UNIT_NAME, DISCOUNT_PER_CENT, DISCOUNT_AMOUNT, INSERT_DATE_TIME, PURCHASE_UNIT_NAME, STOCK_ID, PURCHASE_UNIT, BASE_UNIT, DETAIL_ID, ACCOUNT_ID, DOCUMENT_TYPE });
+            adDgrvSearchEngineDetail.FilterAndSortEnabled = true;
+            adDgrvSearchEngineDetail.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
+            adDgrvSearchEngineDetail.Location = new Point(30, 136);
+            adDgrvSearchEngineDetail.MaxFilterButtonImageHeight = 23;
+            adDgrvSearchEngineDetail.Name = "adDgrvSearchEngineDetail";
+            adDgrvSearchEngineDetail.RightToLeft = RightToLeft.No;
+            adDgrvSearchEngineDetail.Size = new Size(1782, 670);
+            adDgrvSearchEngineDetail.SortStringChangedInvokeBeforeDatasourceUpdate = true;
+            adDgrvSearchEngineDetail.TabIndex = 95;
+            // 
+            // DOC_DATE
+            // 
+            DOC_DATE.DataPropertyName = "DOC_DATE";
+            DOC_DATE.HeaderText = "Sənəd Tarixi";
+            DOC_DATE.MinimumWidth = 24;
+            DOC_DATE.Name = "DOC_DATE";
+            DOC_DATE.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // DOC_NO
             // 
@@ -131,14 +140,6 @@
             DOC_NO.MinimumWidth = 24;
             DOC_NO.Name = "DOC_NO";
             DOC_NO.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // DOC_DATE
-            // 
-            DOC_DATE.DataPropertyName = "DOC_DATE";
-            DOC_DATE.HeaderText = "Sənəd Tarixi";
-            DOC_DATE.MinimumWidth = 24;
-            DOC_DATE.Name = "DOC_DATE";
-            DOC_DATE.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // Customer
             // 
@@ -159,9 +160,9 @@
             // STOCK_NAME
             // 
             STOCK_NAME.DataPropertyName = "STOCK_NAME";
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            STOCK_NAME.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            STOCK_NAME.DefaultCellStyle = dataGridViewCellStyle1;
             STOCK_NAME.FillWeight = 150F;
             STOCK_NAME.HeaderText = "Stok Adı";
             STOCK_NAME.MinimumWidth = 24;
@@ -171,9 +172,9 @@
             // QUANTITY
             // 
             QUANTITY.DataPropertyName = "QUANTITY";
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle8.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            QUANTITY.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            QUANTITY.DefaultCellStyle = dataGridViewCellStyle2;
             QUANTITY.FillWeight = 60F;
             QUANTITY.HeaderText = "Çəki";
             QUANTITY.MinimumWidth = 24;
@@ -183,9 +184,9 @@
             // TOTAL_AMOUNT
             // 
             TOTAL_AMOUNT.DataPropertyName = "TOTAL_AMOUNT";
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            TOTAL_AMOUNT.DefaultCellStyle = dataGridViewCellStyle3;
             TOTAL_AMOUNT.HeaderText = "Toplam AZN";
             TOTAL_AMOUNT.MinimumWidth = 24;
             TOTAL_AMOUNT.Name = "TOTAL_AMOUNT";
@@ -204,9 +205,9 @@
             // TOTAL_QUANTITY
             // 
             TOTAL_QUANTITY.DataPropertyName = "TOTAL_QUANTITY";
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle10.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            TOTAL_QUANTITY.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            TOTAL_QUANTITY.DefaultCellStyle = dataGridViewCellStyle4;
             TOTAL_QUANTITY.FillWeight = 80F;
             TOTAL_QUANTITY.HeaderText = "Cəm Miqdar";
             TOTAL_QUANTITY.MinimumWidth = 24;
@@ -227,8 +228,8 @@
             // DISCOUNT_PER_CENT
             // 
             DISCOUNT_PER_CENT.DataPropertyName = "DISCOUNT_PER_CENT";
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(192, 255, 192);
-            DISCOUNT_PER_CENT.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(192, 255, 192);
+            DISCOUNT_PER_CENT.DefaultCellStyle = dataGridViewCellStyle5;
             DISCOUNT_PER_CENT.HeaderText = "End. Faiz (%)";
             DISCOUNT_PER_CENT.MinimumWidth = 24;
             DISCOUNT_PER_CENT.Name = "DISCOUNT_PER_CENT";
@@ -238,9 +239,9 @@
             // DISCOUNT_AMOUNT
             // 
             DISCOUNT_AMOUNT.DataPropertyName = "DISCOUNT_AMOUNT";
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(192, 255, 192);
-            dataGridViewCellStyle12.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            DISCOUNT_AMOUNT.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(192, 255, 192);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            DISCOUNT_AMOUNT.DefaultCellStyle = dataGridViewCellStyle6;
             DISCOUNT_AMOUNT.HeaderText = "End. Məbləğ";
             DISCOUNT_AMOUNT.MinimumWidth = 24;
             DISCOUNT_AMOUNT.Name = "DISCOUNT_AMOUNT";
@@ -302,6 +303,24 @@
             DETAIL_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
             DETAIL_ID.Visible = false;
             // 
+            // ACCOUNT_ID
+            // 
+            ACCOUNT_ID.DataPropertyName = "ACCOUNT_ID";
+            ACCOUNT_ID.HeaderText = "ACCOUNT_ID";
+            ACCOUNT_ID.MinimumWidth = 24;
+            ACCOUNT_ID.Name = "ACCOUNT_ID";
+            ACCOUNT_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            ACCOUNT_ID.Visible = false;
+            // 
+            // DOCUMENT_TYPE
+            // 
+            DOCUMENT_TYPE.DataPropertyName = "DOCUMENT_TYPE";
+            DOCUMENT_TYPE.HeaderText = "DOCUMENT_TYPE";
+            DOCUMENT_TYPE.MinimumWidth = 24;
+            DOCUMENT_TYPE.Name = "DOCUMENT_TYPE";
+            DOCUMENT_TYPE.SortMode = DataGridViewColumnSortMode.Programmatic;
+            DOCUMENT_TYPE.Visible = false;
+            // 
             // lblUserName
             // 
             lblUserName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -326,181 +345,255 @@
             lblUserId.TabIndex = 102;
             lblUserId.Text = "UserId:";
             // 
-            // lblTotalAmount
-            // 
-            lblTotalAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblTotalAmount.AutoSize = true;
-            lblTotalAmount.Location = new Point(9, 41);
-            lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(80, 15);
-            lblTotalAmount.TabIndex = 101;
-            lblTotalAmount.Text = "Total Amount";
-            // 
-            // lblDiscount
-            // 
-            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblDiscount.AutoSize = true;
-            lblDiscount.Location = new Point(9, 24);
-            lblDiscount.Name = "lblDiscount";
-            lblDiscount.Size = new Size(54, 15);
-            lblDiscount.TabIndex = 100;
-            lblDiscount.Text = "Discount";
-            // 
-            // lblSubtotal
-            // 
-            lblSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblSubtotal.AutoSize = true;
-            lblSubtotal.Location = new Point(9, 7);
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(51, 15);
-            lblSubtotal.TabIndex = 99;
-            lblSubtotal.Text = "Subtotal";
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(lblSubtotal);
-            panel1.Controls.Add(lblTotalAmount);
-            panel1.Controls.Add(lblDiscount);
-            panel1.Location = new Point(1588, 781);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(225, 71);
-            panel1.TabIndex = 104;
-            // 
-            // txtCustomer
-            // 
-            txtCustomer.Location = new Point(667, 5);
-            txtCustomer.Name = "txtCustomer";
-            txtCustomer.Size = new Size(129, 23);
-            txtCustomer.TabIndex = 105;
-            // 
-            // lblSearchStock
-            // 
-            lblSearchStock.AutoSize = true;
-            lblSearchStock.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblSearchStock.Location = new Point(567, 9);
-            lblSearchStock.Name = "lblSearchStock";
-            lblSearchStock.Size = new Size(100, 19);
-            lblSearchStock.TabIndex = 90;
-            lblSearchStock.Text = "Müştəri Axtar";
-            // 
-            // btnSave
-            // 
-            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSave.BackColor = Color.ForestGreen;
-            btnSave.Enabled = false;
-            btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(1631, 12);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(182, 45);
-            btnSave.TabIndex = 98;
-            btnSave.Text = "YADDA SAXLA ✅ 💾";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Visible = false;
-            // 
-            // txtStock
-            // 
-            txtStock.Location = new Point(928, 6);
-            txtStock.Name = "txtStock";
-            txtStock.Size = new Size(129, 23);
-            txtStock.TabIndex = 107;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label1.Location = new Point(831, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 19);
-            label1.TabIndex = 106;
-            label1.Text = "Stok Axtar";
-            // 
             // lblDocType
             // 
             lblDocType.AutoSize = true;
             lblDocType.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDocType.Location = new Point(1307, 9);
+            lblDocType.Location = new Point(589, 10);
             lblDocType.Name = "lblDocType";
-            lblDocType.Size = new Size(90, 19);
+            lblDocType.Size = new Size(94, 19);
             lblDocType.TabIndex = 108;
-            lblDocType.Text = "Sənəd Növü";
+            lblDocType.Text = "Sənəd Növü:";
             // 
             // txtDocNo
             // 
-            txtDocNo.Location = new Point(1192, 8);
+            txtDocNo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDocNo.Location = new Point(508, 20);
             txtDocNo.Name = "txtDocNo";
-            txtDocNo.Size = new Size(76, 23);
+            txtDocNo.Size = new Size(76, 29);
             txtDocNo.TabIndex = 111;
+            txtDocNo.TextChanged += txtDocNo_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label2.Location = new Point(294, 10);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 17);
+            label2.TabIndex = 116;
+            label2.Text = "STOK AXTAR:";
+            // 
+            // txtStockId
+            // 
+            txtStockId.Enabled = false;
+            txtStockId.Font = new Font("Segoe UI", 8.25F);
+            txtStockId.Location = new Point(529, 31);
+            txtStockId.Name = "txtStockId";
+            txtStockId.Size = new Size(17, 22);
+            txtStockId.TabIndex = 115;
+            // 
+            // lstStock
+            // 
+            lstStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lstStock.FormattingEnabled = true;
+            lstStock.ItemHeight = 21;
+            lstStock.Location = new Point(294, 62);
+            lstStock.Name = "lstStock";
+            lstStock.Size = new Size(229, 46);
+            lstStock.TabIndex = 114;
+            lstStock.Visible = false;
+            lstStock.Click += lstStock_Click;
+            // 
+            // txtStock
+            // 
+            txtStock.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStock.Location = new Point(294, 30);
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(229, 29);
+            txtStock.TabIndex = 113;
+            txtStock.TextChanged += txtStock_TextChanged;
+            txtStock.KeyDown += txtStock_KeyDown;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.Location = new Point(18, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 17);
+            label1.TabIndex = 120;
+            label1.Text = "MÜŞTƏRİ:";
+            // 
+            // txtCustomerID
+            // 
+            txtCustomerID.Enabled = false;
+            txtCustomerID.Font = new Font("Segoe UI", 8.25F);
+            txtCustomerID.Location = new Point(253, 31);
+            txtCustomerID.Name = "txtCustomerID";
+            txtCustomerID.Size = new Size(17, 22);
+            txtCustomerID.TabIndex = 119;
+            // 
+            // lstCustomer
+            // 
+            lstCustomer.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lstCustomer.FormattingEnabled = true;
+            lstCustomer.ItemHeight = 21;
+            lstCustomer.Location = new Point(18, 59);
+            lstCustomer.Name = "lstCustomer";
+            lstCustomer.Size = new Size(229, 46);
+            lstCustomer.TabIndex = 118;
+            lstCustomer.Visible = false;
+            lstCustomer.Click += lstCustomer_Click;
+            // 
+            // txtCustomer
+            // 
+            txtCustomer.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCustomer.Location = new Point(18, 30);
+            txtCustomer.Name = "txtCustomer";
+            txtCustomer.Size = new Size(229, 29);
+            txtCustomer.TabIndex = 117;
+            txtCustomer.TextChanged += txtCustomer_TextChanged;
+            txtCustomer.KeyDown += txtCustomer_KeyDown;
+            // 
+            // lbDocNo
+            // 
+            lbDocNo.AutoSize = true;
+            lbDocNo.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lbDocNo.Location = new Point(418, 25);
+            lbDocNo.Name = "lbDocNo";
+            lbDocNo.Size = new Size(84, 21);
+            lbDocNo.TabIndex = 121;
+            lbDocNo.Text = "Sənəd №:";
+            // 
+            // txtDocTypeId
+            // 
+            txtDocTypeId.Enabled = false;
+            txtDocTypeId.Font = new Font("Segoe UI", 8.25F);
+            txtDocTypeId.Location = new Point(824, 28);
+            txtDocTypeId.Name = "txtDocTypeId";
+            txtDocTypeId.Size = new Size(17, 22);
+            txtDocTypeId.TabIndex = 124;
+            // 
+            // lstDocType
+            // 
+            lstDocType.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lstDocType.FormattingEnabled = true;
+            lstDocType.ItemHeight = 21;
+            lstDocType.Location = new Point(589, 59);
+            lstDocType.Name = "lstDocType";
+            lstDocType.Size = new Size(229, 46);
+            lstDocType.TabIndex = 123;
+            lstDocType.Visible = false;
+            lstDocType.Click += lstDocType_Click;
+            // 
+            // txtDocType
+            // 
+            txtDocType.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDocType.Location = new Point(589, 30);
+            txtDocType.Name = "txtDocType";
+            txtDocType.Size = new Size(229, 29);
+            txtDocType.TabIndex = 122;
+            txtDocType.TextChanged += txtDocType_TextChanged;
+            txtDocType.KeyDown += txtDocType_KeyDown;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label3.Location = new Point(1099, 9);
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label3.Location = new Point(15, 20);
             label3.Name = "label3";
-            label3.Size = new Size(78, 19);
-            label3.TabIndex = 110;
-            label3.Text = "Sənəd No:";
+            label3.Size = new Size(123, 21);
+            label3.TabIndex = 125;
+            label3.Text = "TARİX ARALIĞI:";
             // 
-            // comboBox1
+            // btnUpdate
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1412, 9);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 112;
+            btnUpdate.BackColor = Color.FromArgb(255, 255, 192);
+            btnUpdate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnUpdate.ForeColor = SystemColors.ControlText;
+            btnUpdate.Location = new Point(968, 31);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(88, 33);
+            btnUpdate.TabIndex = 126;
+            btnUpdate.Text = "Yenilə";
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ControlLight;
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(dtpDocStartDate);
+            panel1.Controls.Add(dtpDocEndDate);
+            panel1.Controls.Add(txtDocNo);
+            panel1.Controls.Add(lbDocNo);
+            panel1.Location = new Point(31, 11);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 119);
+            panel1.TabIndex = 127;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = SystemColors.ControlLight;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(lblDocType);
+            panel2.Controls.Add(btnUpdate);
+            panel2.Controls.Add(txtStock);
+            panel2.Controls.Add(txtDocTypeId);
+            panel2.Controls.Add(lstStock);
+            panel2.Controls.Add(lstDocType);
+            panel2.Controls.Add(txtStockId);
+            panel2.Controls.Add(txtDocType);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(txtCustomer);
+            panel2.Controls.Add(txtCustomerID);
+            panel2.Controls.Add(lstCustomer);
+            panel2.Location = new Point(711, 11);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1101, 119);
+            panel2.TabIndex = 128;
             // 
             // frmSearchEngine
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1825, 881);
-            Controls.Add(comboBox1);
-            Controls.Add(txtDocNo);
-            Controls.Add(label3);
-            Controls.Add(lblDocType);
-            Controls.Add(txtStock);
-            Controls.Add(label1);
-            Controls.Add(txtCustomer);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(lblUserName);
             Controls.Add(lblUserId);
-            Controls.Add(btnSave);
-            Controls.Add(adDgrvDocumentDetail);
-            Controls.Add(dtpDocEndDate);
-            Controls.Add(dtpDocStartDate);
-            Controls.Add(lblSearchStock);
-            Controls.Add(createNewDoc);
+            Controls.Add(adDgrvSearchEngineDetail);
             Name = "frmSearchEngine";
             Text = "frmSearchEngine";
             WindowState = FormWindowState.Maximized;
             Load += frmSearchEngine_Load;
-            ((System.ComponentModel.ISupportInitialize)adDgrvDocumentDetail).EndInit();
+            ((System.ComponentModel.ISupportInitialize)adDgrvSearchEngineDetail).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button createNewDoc;
         private DateTimePicker dtpDocStartDate;
         private DateTimePicker dtpDocEndDate;
-        private Zuby.ADGV.AdvancedDataGridView adDgrvDocumentDetail;
+        private Zuby.ADGV.AdvancedDataGridView adDgrvSearchEngineDetail;
         private Label lblUserName;
         private Label lblUserId;
-        private Label lblTotalAmount;
-        private Label lblDiscount;
-        private Label lblSubtotal;
-        private Panel panel1;
+        private Label lblDocType;
+        private TextBox txtDocNo;
+        private Label label2;
+        private TextBox txtStockId;
+        private ListBox lstStock;
+        private TextBox txtStock;
+        private Label label1;
+        private TextBox txtCustomerID;
+        private ListBox lstCustomer;
         private TextBox txtCustomer;
-        private Label lblSearchStock;
-        private Button btnSave;
-        private DataGridViewTextBoxColumn DOC_NO;
+        private Label lbDocNo;
+        private TextBox txtDocTypeId;
+        private ListBox lstDocType;
+        private TextBox txtDocType;
+        private Label label3;
+        private Button btnUpdate;
+        private Panel panel1;
+        private Panel panel2;
         private DataGridViewTextBoxColumn DOC_DATE;
+        private DataGridViewTextBoxColumn DOC_NO;
         private DataGridViewTextBoxColumn Customer;
         private DataGridViewTextBoxColumn TYPE_NAME;
         private DataGridViewTextBoxColumn STOCK_NAME;
@@ -517,11 +610,7 @@
         private DataGridViewTextBoxColumn PURCHASE_UNIT;
         private DataGridViewTextBoxColumn BASE_UNIT;
         private DataGridViewTextBoxColumn DETAIL_ID;
-        private TextBox txtStock;
-        private Label label1;
-        private Label lblDocType;
-        private TextBox txtDocNo;
-        private Label label3;
-        private ComboBox comboBox1;
+        private DataGridViewTextBoxColumn ACCOUNT_ID;
+        private DataGridViewTextBoxColumn DOCUMENT_TYPE;
     }
 }

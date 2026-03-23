@@ -37,6 +37,17 @@
             btnSave = new Button();
             BtnCancel = new Button();
             dgrvDocument = new DataGridView();
+            Date = new DataGridViewTextBoxColumn();
+            StockId = new DataGridViewTextBoxColumn();
+            StockName = new DataGridViewTextBoxColumn();
+            BaseUnitId = new DataGridViewTextBoxColumn();
+            DefaultUnit = new DataGridViewTextBoxColumn();
+            PurchaseUnitId = new DataGridViewTextBoxColumn();
+            PurchaseUnit = new DataGridViewComboBoxColumn();
+            Quantity = new DataGridViewTextBoxColumn();
+            TotalQuantity = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
+            TotalAmount = new DataGridViewTextBoxColumn();
             txtSifarisNomresi = new TextBox();
             label2 = new Label();
             lblUserId = new Label();
@@ -56,17 +67,6 @@
             lblTargetWarehouse = new Label();
             txtSourceWarehouseId = new TextBox();
             cmbSourceWarehouse = new ComboBox();
-            Date = new DataGridViewTextBoxColumn();
-            StockId = new DataGridViewTextBoxColumn();
-            StockName = new DataGridViewTextBoxColumn();
-            BaseUnitId = new DataGridViewTextBoxColumn();
-            DefaultUnit = new DataGridViewTextBoxColumn();
-            PurchaseUnitId = new DataGridViewTextBoxColumn();
-            PurchaseUnit = new DataGridViewComboBoxColumn();
-            Quantity = new DataGridViewTextBoxColumn();
-            TotalQuantity = new DataGridViewTextBoxColumn();
-            Price = new DataGridViewTextBoxColumn();
-            TotalAmount = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgrvDocument).BeginInit();
             SuspendLayout();
             // 
@@ -108,6 +108,108 @@
             dgrvDocument.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgrvDocument.Size = new Size(841, 316);
             dgrvDocument.TabIndex = 55;
+            // 
+            // Date
+            // 
+            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Date.FillWeight = 50F;
+            Date.Frozen = true;
+            Date.HeaderText = "Tarix";
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            Date.Width = 50;
+            // 
+            // StockId
+            // 
+            StockId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            StockId.HeaderText = "Xidmetid";
+            StockId.Name = "StockId";
+            StockId.ReadOnly = true;
+            StockId.Visible = false;
+            // 
+            // StockName
+            // 
+            StockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            StockName.DefaultCellStyle = dataGridViewCellStyle1;
+            StockName.FillWeight = 120F;
+            StockName.Frozen = true;
+            StockName.HeaderText = "Stok Adı";
+            StockName.Name = "StockName";
+            StockName.ReadOnly = true;
+            StockName.Width = 119;
+            // 
+            // BaseUnitId
+            // 
+            BaseUnitId.HeaderText = "BaseUnitId";
+            BaseUnitId.Name = "BaseUnitId";
+            BaseUnitId.Visible = false;
+            // 
+            // DefaultUnit
+            // 
+            DefaultUnit.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            DefaultUnit.Frozen = true;
+            DefaultUnit.HeaderText = "Std Vahid";
+            DefaultUnit.Name = "DefaultUnit";
+            DefaultUnit.Width = 98;
+            // 
+            // PurchaseUnitId
+            // 
+            dataGridViewCellStyle2.NullValue = "0";
+            PurchaseUnitId.DefaultCellStyle = dataGridViewCellStyle2;
+            PurchaseUnitId.Frozen = true;
+            PurchaseUnitId.HeaderText = "PurchaseUnitId";
+            PurchaseUnitId.Name = "PurchaseUnitId";
+            PurchaseUnitId.ReadOnly = true;
+            PurchaseUnitId.Visible = false;
+            // 
+            // PurchaseUnit
+            // 
+            PurchaseUnit.FillWeight = 80F;
+            PurchaseUnit.HeaderText = "Fərqli Vahidlə";
+            PurchaseUnit.Name = "PurchaseUnit";
+            PurchaseUnit.Resizable = DataGridViewTriState.True;
+            PurchaseUnit.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // Quantity
+            // 
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Quantity.DefaultCellStyle = dataGridViewCellStyle3;
+            Quantity.FillWeight = 80F;
+            Quantity.HeaderText = "Ədəd";
+            Quantity.Name = "Quantity";
+            // 
+            // TotalQuantity
+            // 
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 255, 192);
+            TotalQuantity.DefaultCellStyle = dataGridViewCellStyle4;
+            TotalQuantity.FillWeight = 80F;
+            TotalQuantity.HeaderText = "Cəm Ədəd";
+            TotalQuantity.Name = "TotalQuantity";
+            // 
+            // Price
+            // 
+            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Price.DefaultCellStyle = dataGridViewCellStyle5;
+            Price.FillWeight = 80F;
+            Price.HeaderText = "Qiymət";
+            Price.Name = "Price";
+            Price.ReadOnly = true;
+            Price.Width = 71;
+            // 
+            // TotalAmount
+            // 
+            TotalAmount.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(255, 255, 128);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            TotalAmount.DefaultCellStyle = dataGridViewCellStyle6;
+            TotalAmount.HeaderText = "Toplam";
+            TotalAmount.Name = "TotalAmount";
+            TotalAmount.ReadOnly = true;
+            TotalAmount.Width = 72;
             // 
             // txtSifarisNomresi
             // 
@@ -223,9 +325,9 @@
             lblSearchStock.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblSearchStock.Location = new Point(29, 388);
             lblSearchStock.Name = "lblSearchStock";
-            lblSearchStock.Size = new Size(130, 17);
+            lblSearchStock.Size = new Size(91, 17);
             lblSearchStock.TabIndex = 82;
-            lblSearchStock.Text = "STOK QRUP AXTAR:";
+            lblSearchStock.Text = "STOK AXTAR:";
             // 
             // lblSourceWarehouse
             // 
@@ -291,109 +393,6 @@
             cmbSourceWarehouse.Size = new Size(139, 23);
             cmbSourceWarehouse.TabIndex = 93;
             cmbSourceWarehouse.SelectedIndexChanged += cmbSourceWarehouse_SelectedIndexChanged;
-            // 
-            // Date
-            // 
-            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Date.FillWeight = 50F;
-            Date.Frozen = true;
-            Date.HeaderText = "Tarix";
-            Date.Name = "Date";
-            Date.ReadOnly = true;
-            Date.Width = 50;
-            // 
-            // StockId
-            // 
-            StockId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            StockId.HeaderText = "Xidmetid";
-            StockId.Name = "StockId";
-            StockId.ReadOnly = true;
-            StockId.Visible = false;
-            StockId.Width = 80;
-            // 
-            // StockName
-            // 
-            StockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            StockName.DefaultCellStyle = dataGridViewCellStyle1;
-            StockName.FillWeight = 120F;
-            StockName.Frozen = true;
-            StockName.HeaderText = "Stok Adı";
-            StockName.Name = "StockName";
-            StockName.ReadOnly = true;
-            StockName.Width = 119;
-            // 
-            // BaseUnitId
-            // 
-            BaseUnitId.HeaderText = "BaseUnitId";
-            BaseUnitId.Name = "BaseUnitId";
-            BaseUnitId.Visible = false;
-            // 
-            // DefaultUnit
-            // 
-            DefaultUnit.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DefaultUnit.Frozen = true;
-            DefaultUnit.HeaderText = "Std Vahid";
-            DefaultUnit.Name = "DefaultUnit";
-            DefaultUnit.Width = 98;
-            // 
-            // PurchaseUnitId
-            // 
-            dataGridViewCellStyle2.NullValue = "0";
-            PurchaseUnitId.DefaultCellStyle = dataGridViewCellStyle2;
-            PurchaseUnitId.Frozen = true;
-            PurchaseUnitId.HeaderText = "PurchaseUnitId";
-            PurchaseUnitId.Name = "PurchaseUnitId";
-            PurchaseUnitId.ReadOnly = true;
-            PurchaseUnitId.Visible = false;
-            // 
-            // PurchaseUnit
-            // 
-            PurchaseUnit.FillWeight = 80F;
-            PurchaseUnit.HeaderText = "Fərqli Vahidlə";
-            PurchaseUnit.Name = "PurchaseUnit";
-            PurchaseUnit.Resizable = DataGridViewTriState.True;
-            PurchaseUnit.SortMode = DataGridViewColumnSortMode.Automatic;
-            // 
-            // Quantity
-            // 
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            Quantity.DefaultCellStyle = dataGridViewCellStyle3;
-            Quantity.FillWeight = 80F;
-            Quantity.HeaderText = "Ədəd";
-            Quantity.Name = "Quantity";
-            // 
-            // TotalQuantity
-            // 
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 255, 192);
-            TotalQuantity.DefaultCellStyle = dataGridViewCellStyle4;
-            TotalQuantity.FillWeight = 80F;
-            TotalQuantity.HeaderText = "Cəm Ədəd";
-            TotalQuantity.Name = "TotalQuantity";
-            // 
-            // Price
-            // 
-            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            Price.DefaultCellStyle = dataGridViewCellStyle5;
-            Price.FillWeight = 80F;
-            Price.HeaderText = "Qiymət";
-            Price.Name = "Price";
-            Price.ReadOnly = true;
-            Price.Width = 71;
-            // 
-            // TotalAmount
-            // 
-            TotalAmount.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(255, 255, 128);
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            TotalAmount.DefaultCellStyle = dataGridViewCellStyle6;
-            TotalAmount.HeaderText = "Toplam";
-            TotalAmount.Name = "TotalAmount";
-            TotalAmount.ReadOnly = true;
-            TotalAmount.Width = 71;
             // 
             // frmTransfer
             // 

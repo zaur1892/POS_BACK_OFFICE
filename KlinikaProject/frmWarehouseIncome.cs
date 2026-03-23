@@ -132,8 +132,21 @@ namespace POS_BACK_OFFICE
         private int GetNextDocNumber()
         {
             var files = Directory.GetFiles(offlineFolder, "*.json");
-            return files.Length + 1;
+
+            int maxNumber = 0;
+            foreach (var file in files)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(file); // Məs: "56"
+                if (int.TryParse(fileName, out int num))
+                {
+                    if (num > maxNumber)
+                        maxNumber = num;
+                }
+            }
+
+            return maxNumber + 1;
         }
+
 
         private void LoadOfflineDocuments()
         {
@@ -176,148 +189,136 @@ namespace POS_BACK_OFFICE
                 return;
             }
 
-            string docNumber = selectedText.Replace("Sənəd #", "").Trim();
-            string filePath = Path.Combine(offlineFolder, docNumber + ".json");
+            string docNumberText = selectedText.Replace("Sənəd #", "").Replace("(Göndərildi)", "").Trim();
+            string filePath = Path.Combine(offlineFolder, docNumberText + ".json");
 
-            // ✅ İlk fürsətdə UI-da işarələyirik
+            // ✅ UI-də əvvəlcədən işarələyirik
             lstOfflineDocuments.Items[selectedIndex] = $"{selectedText} (Göndərildi)";
             lstOfflineDocuments.Refresh();
 
             try
             {
-                if (File.Exists(filePath))
-                {
-                    // Optional: LOCK FILE MEXANİZMI
-                    using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.None))
-                    {
-                        string json;
-                        using (StreamReader reader = new StreamReader(fs))
-                        {
-                            json = reader.ReadToEnd();
-                        }
-
-                        var items = JsonSerializer.Deserialize<List<OfflineItem>>(json);
-
-                        // `docNumber`i və `selectedText`i (OFFLINE_DOC_NO) AddToWarehouse metoduna göndəririk
-                        bool isSuccess = AddToWarehouse(items, docNumber, selectedText); // Yeni parametr əlavə edildi
-
-                        if (!isSuccess)
-                        {
-                            lstOfflineDocuments.Items[selectedIndex] = selectedText; // Hər hansı bir problem varsa, UI geri qaytarılır
-                        }
-                        else
-                        {
-                            // Əgər hər şey qaydasındadırsa, statusu "Göndərildi" olaraq yeniləyirik
-                            foreach (var item in items)
-                            {
-                                item.IsSent = true; // `IsSent` statusunu `true` olaraq dəyişirik
-                            }
-
-                            string updatedJson = JsonSerializer.Serialize(items, new JsonSerializerOptions { WriteIndented = true });
-                            File.WriteAllText(filePath, updatedJson); // JSON faylını yeniləyirik
-
-                            CustomAlertForm.ShowAlert("Uğurlu Əməliyyat", $"Sənəd #{docNumber} uğurla göndərildi.", AlertType.Success);
-                        }
-                    }
-                }
-                else
+                if (!File.Exists(filePath))
                 {
                     CustomAlertForm.ShowAlert("Xəta", "Sənəd faylı tapılmadı.", AlertType.Error);
+                    lstOfflineDocuments.Items[selectedIndex] = selectedText;
+                    return;
+                }
+
+                // 📦 Fayl LOCK ilə oxunur
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    string json;
+                    using (StreamReader reader = new StreamReader(fs))
+                    {
+                        json = reader.ReadToEnd();
+                    }
+
+                    var items = JsonSerializer.Deserialize<List<OfflineItem>>(json);
+
+                    int newDocNo = GetNextDocNumberFromDatabase();
+                    if (newDocNo == -1)
+                    {
+                        CustomAlertForm.ShowAlert("Xəta", "Yeni sənəd nömrəsi alınmadı.", AlertType.Error);
+                        lstOfflineDocuments.Items[selectedIndex] = selectedText;
+                        return;
+                    }
+
+                    txtSifarisNomresi.Text = newDocNo.ToString(); // ✅ Yeni sənəd nömrəsi UI-ya da yazılır
+
+                    bool isSuccess = AddToWarehouse(items, newDocNo, selectedText); // 🆕 doğru parametrlərlə çağırılır
+
+                    if (!isSuccess)
+                    {
+                        lstOfflineDocuments.Items[selectedIndex] = selectedText;
+                    }
+                    else
+                    {
+                        foreach (var item in items)
+                        {
+                            item.IsSent = true;
+                        }
+
+                        string updatedJson = JsonSerializer.Serialize(items, new JsonSerializerOptions { WriteIndented = true });
+                        File.WriteAllText(filePath, updatedJson);
+
+                        CustomAlertForm.ShowAlert("Uğurlu Əməliyyat", $"Sənəd #{docNumberText} uğurla göndərildi.", AlertType.Success);
+                    }
                 }
             }
             catch (IOException)
             {
-                // Əgər fayl bloklanıbsa və ya başqa biri tərəfindən istifadə olunursa
                 CustomAlertForm.ShowAlert("Xəta", "Fayl hazırda istifadə olunur və ya kilidlənib.", AlertType.Warning);
-
-                // UI geri qaytarmaq üçün (əgər uğursuzdursa)
                 lstOfflineDocuments.Items[selectedIndex] = selectedText;
             }
             catch (Exception ex)
             {
                 CustomAlertForm.ShowAlert("Xəta", "Sənəd göndərilərkən xəta baş verdi:\n" + ex.Message, AlertType.Error);
-
-                // UI geri qaytarmaq
                 lstOfflineDocuments.Items[selectedIndex] = selectedText;
             }
         }
 
-        private bool AddToWarehouse(List<OfflineItem> items, string docNumber, string offlineDocNo)
+        private bool AddToWarehouse(List<OfflineItem> items, int docNum, string offlineDocNo)
         {
             SqlTransaction transaction = null;
             try
             {
-                int docNum = int.Parse(txtSifarisNomresi.Text);
                 DateTime docDate = dtpDocDate1.Value;
 
                 using (SqlConnection conn = new SqlConnection(this.sqlbaglan.conString))
                 {
                     conn.Open();
-
-                    // Transaction başlatmaq
                     transaction = conn.BeginTransaction();
 
                     foreach (var item in items)
                     {
-                        try
+                        SqlCommand cmd = new SqlCommand("SP_InsertDocumentsFromBarcode", conn)
                         {
-                            SqlCommand cmd = new SqlCommand("SP_InsertDocumentsFromBarcode", conn)
-                            {
-                                CommandType = CommandType.StoredProcedure,
-                                Transaction = transaction
-                            };
+                            CommandType = CommandType.StoredProcedure,
+                            Transaction = transaction
+                        };
 
-                            cmd.Parameters.AddWithValue("@Doc_No", docNum);
-                            cmd.Parameters.AddWithValue("@Tarix", docDate);
-                            cmd.Parameters.AddWithValue("@Barcode", item.Barcode);
-                            cmd.Parameters.AddWithValue("@Code", item.Code);
-                            cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
-                            cmd.Parameters.AddWithValue("@TotalQuantity", item.Quantity);
-                            cmd.Parameters.AddWithValue("@Price", 0);
-                            cmd.Parameters.AddWithValue("@OfflineDocNo", offlineDocNo); // Offline sənəd nömrəsini əlavə edirik
+                        cmd.Parameters.AddWithValue("@Doc_No", docNum);
+                        cmd.Parameters.AddWithValue("@Tarix", docDate);
+                        cmd.Parameters.AddWithValue("@Barcode", item.Barcode);
+                        cmd.Parameters.AddWithValue("@Code", item.Code);
+                        cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+                        cmd.Parameters.AddWithValue("@TotalQuantity", item.Quantity);
+                        cmd.Parameters.AddWithValue("@Price", 0);
+                        cmd.Parameters.AddWithValue("@OfflineDocNo", offlineDocNo);
 
-                            // Insert əməliyyatı
-                            int result = cmd.ExecuteNonQuery();
-
-                            // Hər hansı bir dəyişiklik baş verməyibsə (result <= 0), amma xəta baş verməyibsə, əməliyyatı davam etdiririk
-                            if (result <= 0)
-                            {
-                                // Bu, əməliyyatın heç bir sətir əlavə etmədiyini göstərir
-                                // Bu halda rollback etməyəcəyik, çünki bizim ehtiyacımız olan yalnız icra edilməyən əməliyyatlardır.
-                                continue;  // Heç bir dəyişiklik baş verməyibsə, əməliyyata davam edirik
-                            }
-                        }
-                        catch (SqlException sqlEx)
+                        int result = cmd.ExecuteNonQuery();
+                        if (result <= 0)
                         {
-                            // SQL Error-u burada tuturuq və Rollback edirik
-                            transaction.Rollback();
-                            MessageBox.Show($"SQL Error: {sqlEx.Message}", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                        catch (Exception ex)
-                        {
-                            // Ümumi xəta baş verərsə, Rollback edirik
-                            transaction.Rollback();
-                            MessageBox.Show($"Error: {ex.Message}", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
+                            continue;
                         }
 
                         item.IsSent = true;
                     }
 
-                    // Əgər heç bir xəta baş verməyibsə, transaction-u təsdiq edirik
                     transaction.Commit();
                 }
 
-                return true; // Əməliyyat uğurlu olduqda true qaytarırıq
+                return true;
+            }
+            catch (SqlException sqlEx)
+            {
+                transaction?.Rollback();
+                MessageBox.Show($"SQL Error: {sqlEx.Message}", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             catch (Exception ex)
             {
-                // Xəta baş verərsə, əməliyyatı dayandırırıq və heç bir mesaj göstərməyirik
-                MessageBox.Show($"Xəta: {ex.Message}", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                transaction?.Rollback();
+                MessageBox.Show($"Error: {ex.Message}", "Xəta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
+
+
+
+
+
 
 
 
@@ -342,49 +343,58 @@ namespace POS_BACK_OFFICE
             if (isConnected)
             {
                 lblStatus.Text = "🟢 Online";
-                lblStatus.ForeColor = Color.Green; // ✅ Yaşıl rəng edirik
+                lblStatus.ForeColor = Color.Green;
                 btnSendToWarehouse.Enabled = true;
                 pictureBox1.Visible = false;
                 pictureBox2.Visible = true;
-            }
 
+                // Sifariş nömrəsi yalnız bir dəfə alınır, əgər hələ təyin olunmayıbsa
+                if (string.IsNullOrWhiteSpace(txtSifarisNomresi.Text) || txtSifarisNomresi.Text.StartsWith("OFFLINE"))
+                {
+                    try
+                    {
+                        //GetNextDocNumberFromDatabase();
+                    }
+                    catch
+                    {
+                        txtSifarisNomresi.Text = "OFFLINE-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                    }
+                }
+            }
             else
             {
                 lblStatus.Text = "";
                 btnSendToWarehouse.Enabled = false;
                 pictureBox1.Visible = true;
                 pictureBox2.Visible = false;
-            }
 
+                // Offline rejimində sifariş nömrəsi offline formatında göstərilir
+                txtSifarisNomresi.Text = "OFFLINE-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            }
+        }
+
+        private int GetNextDocNumberFromDatabase()
+        {
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.sqlbaglan.conString))
                 {
                     connection.Open();
                     string query = "SELECT ISNULL(MAX(DOC_NO), 0) + 1 AS NEW_DOC_NO FROM DOCUMENT_HEADER";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read())
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        txtSifarisNomresi.Text = reader["NEW_DOC_NO"].ToString();
+                        object result = command.ExecuteScalar();
+                        return Convert.ToInt32(result);
                     }
-                    else
-                    {
-                        txtSifarisNomresi.Text = "1";
-                    }
-
-                    reader.Close();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // Əgər bağlantı alınmasa, sadəcə olaraq offline rejimi üçün bir dəyər təyin edin
-                txtSifarisNomresi.Text = "OFFLINE-" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                // İstəyə görə log da edə bilərsiniz
-                // MessageBox.Show("Verilənlər bazasına bağlantı alınmadı: " + ex.Message);
+                return -1; // Bazaya çıxmaq olmursa, -1 göndər
             }
         }
+
+
 
 
         private async Task<bool> CheckConnectionAsync()
@@ -397,6 +407,7 @@ namespace POS_BACK_OFFICE
                     {
                         conn.Open();
                         return conn.State == ConnectionState.Open;
+                        
                     }
                 }
                 catch
@@ -441,9 +452,12 @@ namespace POS_BACK_OFFICE
         private void btnOpenProductForm_Click(object sender, EventArgs e)
         {
             frmProductManager productManager = new frmProductManager();
+            productManager.StartPosition = FormStartPosition.Manual; // Manual olaraq yer təyin edirik
+            productManager.Location = new Point(10, 10); // Soldan 10px, yuxarıdan 10px
             productManager.ShowDialog();
             LoadProducts();
         }
+
 
         private void frmWarehouseIncome_Load_1(object sender, EventArgs e)
         {

@@ -478,8 +478,8 @@ namespace POS_BACK_OFFICE
                         cmd.Parameters.AddWithValue("@TotalQuantity", Convert.ToDecimal(row.Cells["TOTAL_QUANTITY"].Value ?? 0));
                         cmd.Parameters.AddWithValue("@DefaultPrice", Convert.ToDecimal(row.Cells["DEFAULT_PRICE"].Value ?? 0));
                         cmd.Parameters.AddWithValue("@PurchaseUnit", Convert.ToInt32(row.Cells["PURCHASE_UNIT"].Value ?? 0));
-                        cmd.Parameters.AddWithValue("@DiscountPerCent", Convert.ToDecimal(row.Cells["DISCOUNT_PER_CENT"].Value ?? 0));
-                        cmd.Parameters.AddWithValue("@DiscountAmount", Convert.ToDecimal(row.Cells["DISCOUNT_AMOUNT"].Value ?? 0));
+                        //cmd.Parameters.AddWithValue("@DiscountPerCent", Convert.ToDecimal(row.Cells["DISCOUNT_PER_CENT"].Value ?? 0));
+                        //cmd.Parameters.AddWithValue("@DiscountAmount", Convert.ToDecimal(row.Cells["DISCOUNT_AMOUNT"].Value ?? 0));
                         // Həmin hissədə `TOTAL_AMOUNT`-ı yoxlayırıq ki, NULL göndərilməsin
                         decimal totalAmount = Convert.ToDecimal(row.Cells["TOTAL_AMOUNT"].Value ?? 0);
                         cmd.Parameters.AddWithValue("@TotalAmount", totalAmount == 0 ? 0 : totalAmount); // NULL yerinə 0 göndəririk

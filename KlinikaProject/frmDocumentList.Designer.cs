@@ -38,15 +38,15 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentList));
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentList));
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             createNewDoc = new Button();
             adDgrvDocumentList = new Zuby.ADGV.AdvancedDataGridView();
             DOCNO = new DataGridViewTextBoxColumn();
@@ -69,24 +69,6 @@
             lblDocType = new Label();
             dtpDocEndDate = new DateTimePicker();
             adDgrvDocumentDetail = new Zuby.ADGV.AdvancedDataGridView();
-            DOC_NO = new DataGridViewTextBoxColumn();
-            Barode = new DataGridViewTextBoxColumn();
-            STOCK_NAME = new DataGridViewTextBoxColumn();
-            BASE_UNIT_NAME = new DataGridViewTextBoxColumn();
-            PURCHASE_UNIT_NAME = new DataGridViewTextBoxColumn();
-            cmbPurchaseUnitName = new DataGridViewComboBoxColumn();
-            QUANTITY = new DataGridViewTextBoxColumn();
-            TOTAL_QUANTITY = new DataGridViewTextBoxColumn();
-            DEFAULT_PRICE = new DataGridViewTextBoxColumn();
-            DISCOUNT_PER_CENT = new DataGridViewTextBoxColumn();
-            DISCOUNT_AMOUNT = new DataGridViewTextBoxColumn();
-            TOTAL_AMOUNT = new DataGridViewTextBoxColumn();
-            INSERT_DATE_TIME = new DataGridViewTextBoxColumn();
-            DELETED = new DataGridViewCheckBoxColumn();
-            STOCK_ID = new DataGridViewTextBoxColumn();
-            PURCHASE_UNIT = new DataGridViewTextBoxColumn();
-            BASE_UNIT = new DataGridViewTextBoxColumn();
-            DETAIL_ID = new DataGridViewTextBoxColumn();
             btnDocEdit = new Button();
             btnDocDelete = new Button();
             btnSave = new Button();
@@ -105,6 +87,24 @@
             BOX_COUNT = new DataGridViewTextBoxColumn();
             TOTAL = new DataGridViewTextBoxColumn();
             STOCKID = new DataGridViewTextBoxColumn();
+            DOC_NO = new DataGridViewTextBoxColumn();
+            Barode = new DataGridViewTextBoxColumn();
+            STOCK_NAME = new DataGridViewTextBoxColumn();
+            BASE_UNIT_NAME = new DataGridViewTextBoxColumn();
+            PURCHASE_UNIT_NAME = new DataGridViewTextBoxColumn();
+            cmbPurchaseUnitName = new DataGridViewComboBoxColumn();
+            QUANTITY = new DataGridViewTextBoxColumn();
+            TOTAL_QUANTITY = new DataGridViewTextBoxColumn();
+            DEFAULT_PRICE = new DataGridViewTextBoxColumn();
+            DISCOUNT_PER_CENT = new DataGridViewTextBoxColumn();
+            DISCOUNT_AMOUNT = new DataGridViewTextBoxColumn();
+            TOTAL_AMOUNT = new DataGridViewTextBoxColumn();
+            INSERT_DATE_TIME = new DataGridViewTextBoxColumn();
+            DELETED = new DataGridViewCheckBoxColumn();
+            STOCK_ID = new DataGridViewTextBoxColumn();
+            PURCHASE_UNIT = new DataGridViewTextBoxColumn();
+            BASE_UNIT = new DataGridViewTextBoxColumn();
+            DETAIL_ID = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)adDgrvDocumentList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)adDgrvDocumentDetail).BeginInit();
             panel1.SuspendLayout();
@@ -116,11 +116,12 @@
             // 
             // createNewDoc
             // 
-            createNewDoc.BackColor = Color.LimeGreen;
+            createNewDoc.BackColor = Color.Green;
+            createNewDoc.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             createNewDoc.ForeColor = Color.White;
             createNewDoc.Location = new Point(11, 5);
             createNewDoc.Name = "createNewDoc";
-            createNewDoc.Size = new Size(108, 32);
+            createNewDoc.Size = new Size(123, 32);
             createNewDoc.TabIndex = 0;
             createNewDoc.Text = "YENİ SƏNƏD ➕";
             createNewDoc.UseVisualStyleBackColor = false;
@@ -131,6 +132,7 @@
             adDgrvDocumentList.AllowUserToAddRows = false;
             adDgrvDocumentList.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             adDgrvDocumentList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            adDgrvDocumentList.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -362,6 +364,8 @@
             adDgrvDocumentDetail.AllowUserToAddRows = false;
             adDgrvDocumentDetail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             adDgrvDocumentDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            adDgrvDocumentDetail.BackgroundColor = SystemColors.ButtonFace;
+            adDgrvDocumentDetail.BorderStyle = BorderStyle.Fixed3D;
             adDgrvDocumentDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             adDgrvDocumentDetail.Columns.AddRange(new DataGridViewColumn[] { DOC_NO, Barode, STOCK_NAME, BASE_UNIT_NAME, PURCHASE_UNIT_NAME, cmbPurchaseUnitName, QUANTITY, TOTAL_QUANTITY, DEFAULT_PRICE, DISCOUNT_PER_CENT, DISCOUNT_AMOUNT, TOTAL_AMOUNT, INSERT_DATE_TIME, DELETED, STOCK_ID, PURCHASE_UNIT, BASE_UNIT, DETAIL_ID });
             adDgrvDocumentDetail.FilterAndSortEnabled = false;
@@ -374,6 +378,218 @@
             adDgrvDocumentDetail.Size = new Size(947, 364);
             adDgrvDocumentDetail.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             adDgrvDocumentDetail.TabIndex = 95;
+            // 
+            // btnDocEdit
+            // 
+            btnDocEdit.BackColor = Color.WhiteSmoke;
+            btnDocEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDocEdit.Location = new Point(140, 5);
+            btnDocEdit.Name = "btnDocEdit";
+            btnDocEdit.Size = new Size(108, 32);
+            btnDocEdit.TabIndex = 96;
+            btnDocEdit.Text = "REDAKTƏ ✏️";
+            btnDocEdit.UseVisualStyleBackColor = false;
+            btnDocEdit.Click += btnDocEdit_Click;
+            // 
+            // btnDocDelete
+            // 
+            btnDocDelete.BackColor = Color.Red;
+            btnDocDelete.ForeColor = Color.White;
+            btnDocDelete.Location = new Point(254, 6);
+            btnDocDelete.Name = "btnDocDelete";
+            btnDocDelete.Size = new Size(108, 33);
+            btnDocDelete.TabIndex = 97;
+            btnDocDelete.Text = "SİLMƏK ➖ ✖";
+            btnDocDelete.UseVisualStyleBackColor = false;
+            btnDocDelete.Visible = false;
+            // 
+            // btnSave
+            // 
+            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSave.BackColor = Color.ForestGreen;
+            btnSave.Enabled = false;
+            btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(1341, 12);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(182, 45);
+            btnSave.TabIndex = 98;
+            btnSave.Text = "YADDA SAXLA ✅ 💾";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            // 
+            // lblUserName
+            // 
+            lblUserName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblUserName.ForeColor = SystemColors.ActiveCaptionText;
+            lblUserName.Location = new Point(139, 846);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(91, 21);
+            lblUserName.TabIndex = 103;
+            lblUserName.Text = "Username:";
+            // 
+            // lblUserId
+            // 
+            lblUserId.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblUserId.AutoSize = true;
+            lblUserId.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblUserId.ForeColor = SystemColors.ActiveCaptionText;
+            lblUserId.Location = new Point(31, 846);
+            lblUserId.Name = "lblUserId";
+            lblUserId.Size = new Size(63, 21);
+            lblUserId.TabIndex = 102;
+            lblUserId.Text = "UserId:";
+            // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Location = new Point(309, 41);
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(80, 15);
+            lblTotalAmount.TabIndex = 101;
+            lblTotalAmount.Text = "Total Amount";
+            // 
+            // lblDiscount
+            // 
+            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblDiscount.AutoSize = true;
+            lblDiscount.Location = new Point(309, 24);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(54, 15);
+            lblDiscount.TabIndex = 100;
+            lblDiscount.Text = "Discount";
+            // 
+            // lblSubtotal
+            // 
+            lblSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblSubtotal.AutoSize = true;
+            lblSubtotal.Location = new Point(309, 7);
+            lblSubtotal.Name = "lblSubtotal";
+            lblSubtotal.Size = new Size(51, 15);
+            lblSubtotal.TabIndex = 99;
+            lblSubtotal.Text = "Subtotal";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(lblSubtotal);
+            panel1.Controls.Add(lblTotalAmount);
+            panel1.Controls.Add(lblDiscount);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(998, 781);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(525, 71);
+            panel1.TabIndex = 104;
+            panel1.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(1, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(86, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 107;
+            pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnDocEdit);
+            panel2.Controls.Add(createNewDoc);
+            panel2.Controls.Add(btnDocDelete);
+            panel2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel2.Location = new Point(31, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(385, 45);
+            panel2.TabIndex = 108;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel3.Controls.Add(lblModulName);
+            panel3.Location = new Point(31, 790);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(278, 53);
+            panel3.TabIndex = 109;
+            // 
+            // lblModulName
+            // 
+            lblModulName.AutoSize = true;
+            lblModulName.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblModulName.Location = new Point(11, 9);
+            lblModulName.Name = "lblModulName";
+            lblModulName.Size = new Size(220, 25);
+            lblModulName.TabIndex = 0;
+            lblModulName.Text = "ANBAR GİRİŞ MODULU";
+            // 
+            // adDgrvDocumentDetailStockSum
+            // 
+            adDgrvDocumentDetailStockSum.AllowUserToAddRows = false;
+            adDgrvDocumentDetailStockSum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            adDgrvDocumentDetailStockSum.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            adDgrvDocumentDetailStockSum.BackgroundColor = SystemColors.ButtonFace;
+            adDgrvDocumentDetailStockSum.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            adDgrvDocumentDetailStockSum.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, BOX_COUNT, TOTAL, STOCKID });
+            adDgrvDocumentDetailStockSum.FilterAndSortEnabled = false;
+            adDgrvDocumentDetailStockSum.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
+            adDgrvDocumentDetailStockSum.Location = new Point(998, 411);
+            adDgrvDocumentDetailStockSum.MaxFilterButtonImageHeight = 23;
+            adDgrvDocumentDetailStockSum.Name = "adDgrvDocumentDetailStockSum";
+            adDgrvDocumentDetailStockSum.ReadOnly = true;
+            adDgrvDocumentDetailStockSum.RightToLeft = RightToLeft.No;
+            adDgrvDocumentDetailStockSum.Size = new Size(525, 364);
+            adDgrvDocumentDetailStockSum.SortStringChangedInvokeBeforeDatasourceUpdate = true;
+            adDgrvDocumentDetailStockSum.TabIndex = 110;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "STOCK_NAME";
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle17.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewTextBoxColumn3.FillWeight = 150F;
+            dataGridViewTextBoxColumn3.HeaderText = "Çeşid";
+            dataGridViewTextBoxColumn3.MinimumWidth = 24;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // BOX_COUNT
+            // 
+            BOX_COUNT.DataPropertyName = "BOX_COUNT";
+            BOX_COUNT.HeaderText = "Qutu Say";
+            BOX_COUNT.MinimumWidth = 24;
+            BOX_COUNT.Name = "BOX_COUNT";
+            BOX_COUNT.ReadOnly = true;
+            BOX_COUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // TOTAL
+            // 
+            TOTAL.DataPropertyName = "TOTAL";
+            dataGridViewCellStyle18.BackColor = Color.FromArgb(255, 255, 192);
+            dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            TOTAL.DefaultCellStyle = dataGridViewCellStyle18;
+            TOTAL.FillWeight = 89F;
+            TOTAL.HeaderText = "Toplam Çəki";
+            TOTAL.MinimumWidth = 24;
+            TOTAL.Name = "TOTAL";
+            TOTAL.ReadOnly = true;
+            TOTAL.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // STOCKID
+            // 
+            STOCKID.DataPropertyName = "STOCK_ID";
+            STOCKID.HeaderText = "STOCK_ID";
+            STOCKID.MinimumWidth = 24;
+            STOCKID.Name = "STOCKID";
+            STOCKID.ReadOnly = true;
+            STOCKID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            STOCKID.Visible = false;
             // 
             // DOC_NO
             // 
@@ -526,7 +742,6 @@
             // 
             // DELETED
             // 
-            DELETED.DataPropertyName = "STATUS_FOR_GRID";
             DELETED.FalseValue = "1";
             DELETED.FillWeight = 30F;
             DELETED.HeaderText = "SIL";
@@ -576,222 +791,15 @@
             DETAIL_ID.SortMode = DataGridViewColumnSortMode.Programmatic;
             DETAIL_ID.Visible = false;
             // 
-            // btnDocEdit
-            // 
-            btnDocEdit.Location = new Point(125, 5);
-            btnDocEdit.Name = "btnDocEdit";
-            btnDocEdit.Size = new Size(108, 32);
-            btnDocEdit.TabIndex = 96;
-            btnDocEdit.Text = "REDAKTƏ ✏️";
-            btnDocEdit.UseVisualStyleBackColor = true;
-            btnDocEdit.Click += btnDocEdit_Click;
-            // 
-            // btnDocDelete
-            // 
-            btnDocDelete.BackColor = Color.Red;
-            btnDocDelete.ForeColor = Color.White;
-            btnDocDelete.Location = new Point(239, 5);
-            btnDocDelete.Name = "btnDocDelete";
-            btnDocDelete.Size = new Size(108, 33);
-            btnDocDelete.TabIndex = 97;
-            btnDocDelete.Text = "SİLMƏK ➖ ✖";
-            btnDocDelete.UseVisualStyleBackColor = false;
-            btnDocDelete.Visible = false;
-            // 
-            // btnSave
-            // 
-            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSave.BackColor = Color.ForestGreen;
-            btnSave.Enabled = false;
-            btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(1341, 12);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(182, 45);
-            btnSave.TabIndex = 98;
-            btnSave.Text = "YADDA SAXLA ✅ 💾";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
-            // 
-            // lblUserName
-            // 
-            lblUserName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblUserName.AutoSize = true;
-            lblUserName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblUserName.ForeColor = SystemColors.ActiveCaptionText;
-            lblUserName.Location = new Point(139, 846);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(91, 21);
-            lblUserName.TabIndex = 103;
-            lblUserName.Text = "Username:";
-            // 
-            // lblUserId
-            // 
-            lblUserId.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblUserId.AutoSize = true;
-            lblUserId.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblUserId.ForeColor = SystemColors.ActiveCaptionText;
-            lblUserId.Location = new Point(31, 846);
-            lblUserId.Name = "lblUserId";
-            lblUserId.Size = new Size(63, 21);
-            lblUserId.TabIndex = 102;
-            lblUserId.Text = "UserId:";
-            // 
-            // lblTotalAmount
-            // 
-            lblTotalAmount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblTotalAmount.AutoSize = true;
-            lblTotalAmount.Location = new Point(124, 41);
-            lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(80, 15);
-            lblTotalAmount.TabIndex = 101;
-            lblTotalAmount.Text = "Total Amount";
-            // 
-            // lblDiscount
-            // 
-            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblDiscount.AutoSize = true;
-            lblDiscount.Location = new Point(124, 24);
-            lblDiscount.Name = "lblDiscount";
-            lblDiscount.Size = new Size(54, 15);
-            lblDiscount.TabIndex = 100;
-            lblDiscount.Text = "Discount";
-            // 
-            // lblSubtotal
-            // 
-            lblSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblSubtotal.AutoSize = true;
-            lblSubtotal.Location = new Point(124, 7);
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(51, 15);
-            lblSubtotal.TabIndex = 99;
-            lblSubtotal.Text = "Subtotal";
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(lblSubtotal);
-            panel1.Controls.Add(lblTotalAmount);
-            panel1.Controls.Add(lblDiscount);
-            panel1.Location = new Point(1185, 781);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(340, 71);
-            panel1.TabIndex = 104;
-            panel1.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1190, 785);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(86, 64);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 107;
-            pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnDocEdit);
-            panel2.Controls.Add(createNewDoc);
-            panel2.Controls.Add(btnDocDelete);
-            panel2.Location = new Point(31, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(361, 45);
-            panel2.TabIndex = 108;
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel3.Controls.Add(lblModulName);
-            panel3.Location = new Point(31, 790);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(278, 53);
-            panel3.TabIndex = 109;
-            // 
-            // lblModulName
-            // 
-            lblModulName.AutoSize = true;
-            lblModulName.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblModulName.Location = new Point(11, 9);
-            lblModulName.Name = "lblModulName";
-            lblModulName.Size = new Size(220, 25);
-            lblModulName.TabIndex = 0;
-            lblModulName.Text = "ANBAR GİRİŞ MODULU";
-            // 
-            // adDgrvDocumentDetailStockSum
-            // 
-            adDgrvDocumentDetailStockSum.AllowUserToAddRows = false;
-            adDgrvDocumentDetailStockSum.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            adDgrvDocumentDetailStockSum.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            adDgrvDocumentDetailStockSum.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            adDgrvDocumentDetailStockSum.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn3, BOX_COUNT, TOTAL, STOCKID });
-            adDgrvDocumentDetailStockSum.FilterAndSortEnabled = false;
-            adDgrvDocumentDetailStockSum.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
-            adDgrvDocumentDetailStockSum.Location = new Point(998, 411);
-            adDgrvDocumentDetailStockSum.MaxFilterButtonImageHeight = 23;
-            adDgrvDocumentDetailStockSum.Name = "adDgrvDocumentDetailStockSum";
-            adDgrvDocumentDetailStockSum.ReadOnly = true;
-            adDgrvDocumentDetailStockSum.RightToLeft = RightToLeft.No;
-            adDgrvDocumentDetailStockSum.Size = new Size(525, 364);
-            adDgrvDocumentDetailStockSum.SortStringChangedInvokeBeforeDatasourceUpdate = true;
-            adDgrvDocumentDetailStockSum.TabIndex = 110;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "STOCK_NAME";
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle17.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle17;
-            dataGridViewTextBoxColumn3.FillWeight = 150F;
-            dataGridViewTextBoxColumn3.HeaderText = "Çeşid";
-            dataGridViewTextBoxColumn3.MinimumWidth = 24;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.ReadOnly = true;
-            dataGridViewTextBoxColumn3.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // BOX_COUNT
-            // 
-            BOX_COUNT.DataPropertyName = "BOX_COUNT";
-            BOX_COUNT.HeaderText = "Qutu Say";
-            BOX_COUNT.MinimumWidth = 24;
-            BOX_COUNT.Name = "BOX_COUNT";
-            BOX_COUNT.ReadOnly = true;
-            BOX_COUNT.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // TOTAL
-            // 
-            TOTAL.DataPropertyName = "TOTAL";
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(255, 255, 192);
-            dataGridViewCellStyle18.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            TOTAL.DefaultCellStyle = dataGridViewCellStyle18;
-            TOTAL.FillWeight = 60F;
-            TOTAL.HeaderText = "Toplam Çəki";
-            TOTAL.MinimumWidth = 24;
-            TOTAL.Name = "TOTAL";
-            TOTAL.ReadOnly = true;
-            TOTAL.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // STOCKID
-            // 
-            STOCKID.DataPropertyName = "STOCK_ID";
-            STOCKID.HeaderText = "STOCK_ID";
-            STOCKID.MinimumWidth = 24;
-            STOCKID.Name = "STOCKID";
-            STOCKID.ReadOnly = true;
-            STOCKID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            STOCKID.Visible = false;
-            // 
             // frmDocumentList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DimGray;
             ClientSize = new Size(1535, 881);
             Controls.Add(adDgrvDocumentDetailStockSum);
             Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(lblUserName);
             Controls.Add(lblUserId);
@@ -859,6 +867,10 @@
         private DataGridViewTextBoxColumn DOCUMENT_TYPE;
         private DataGridViewTextBoxColumn HEADER_ID;
         private DataGridViewTextBoxColumn CUSTOMER_ID;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn BOX_COUNT;
+        private DataGridViewTextBoxColumn TOTAL;
+        private DataGridViewTextBoxColumn STOCKID;
         private DataGridViewTextBoxColumn DOC_NO;
         private DataGridViewTextBoxColumn Barode;
         private DataGridViewTextBoxColumn STOCK_NAME;
@@ -877,9 +889,5 @@
         private DataGridViewTextBoxColumn PURCHASE_UNIT;
         private DataGridViewTextBoxColumn BASE_UNIT;
         private DataGridViewTextBoxColumn DETAIL_ID;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn BOX_COUNT;
-        private DataGridViewTextBoxColumn TOTAL;
-        private DataGridViewTextBoxColumn STOCKID;
     }
 }

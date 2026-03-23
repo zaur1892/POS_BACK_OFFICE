@@ -45,8 +45,10 @@
             panel2 = new Panel();
             btnWarehouseIncForm = new Button();
             btnSaleForm = new Button();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // lblDate
@@ -220,9 +222,10 @@
             // 
             // btnWarehouseIncForm
             // 
-            btnWarehouseIncForm.Location = new Point(13, 4);
+            btnWarehouseIncForm.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnWarehouseIncForm.Location = new Point(10, 6);
             btnWarehouseIncForm.Name = "btnWarehouseIncForm";
-            btnWarehouseIncForm.Size = new Size(128, 37);
+            btnWarehouseIncForm.Size = new Size(111, 37);
             btnWarehouseIncForm.TabIndex = 16;
             btnWarehouseIncForm.Text = "MƏDAXİL";
             btnWarehouseIncForm.UseVisualStyleBackColor = true;
@@ -230,13 +233,23 @@
             // 
             // btnSaleForm
             // 
-            btnSaleForm.Location = new Point(161, 5);
+            btnSaleForm.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaleForm.Location = new Point(131, 6);
             btnSaleForm.Name = "btnSaleForm";
-            btnSaleForm.Size = new Size(133, 36);
+            btnSaleForm.Size = new Size(119, 37);
             btnSaleForm.TabIndex = 17;
             btnSaleForm.Text = "SATIŞ";
             btnSaleForm.UseVisualStyleBackColor = true;
             btnSaleForm.Click += btnSaleForm_Click;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(btnSaleForm);
+            panel3.Controls.Add(btnWarehouseIncForm);
+            panel3.Location = new Point(15, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(261, 48);
+            panel3.TabIndex = 18;
             // 
             // AnaForm
             // 
@@ -247,8 +260,7 @@
             BackColor = Color.DimGray;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1367, 735);
-            Controls.Add(btnSaleForm);
-            Controls.Add(btnWarehouseIncForm);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(btnLock);
@@ -262,6 +274,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -283,5 +296,6 @@
         private Panel panel2;
         private Button btnWarehouseIncForm;
         private Button btnSaleForm;
+        private Panel panel3;
     }
 }

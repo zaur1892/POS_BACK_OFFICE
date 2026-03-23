@@ -84,7 +84,7 @@ namespace POS_BACK_OFFICE
             stockMenu.DropDownItems.Add(stockMovementsMenu);
 
             // Hesabatlar menyusu
-            reportsMenu = new ToolStripMenuItem("Hesabatlar") { Font = menuFont, Padding = new Padding(8, 6, 8, 6) };
+            reportsMenu = new ToolStripMenuItem("Hesabatlar") { Font = menuFont, Padding = new Padding(60, 6, 8, 6) };
             //stockCountReportMenu = new ToolStripMenuItem("Depo Sayım Hesabatı") { Font = menuFont };
 
             stockCountMenu = new ToolStripMenuItem("Depo Sayımları") { Font = menuFont };
